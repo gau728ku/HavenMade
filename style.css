@@ -366,7 +366,32 @@ body{margin:0;font-family:'Poppins',sans-serif;background:var(--cream);color:#22
   transition: background 0.3s ease;
 }
 
+/* View All Button */
+.view-all-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.view-all-btn {
+  display: inline-block;
+  background-color: #3b2e2e;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.view-all-btn:hover {
+  background-color: #5b423f;
+  transform: translateY(-2px);
+}
+
+
 .product-card button:hover {
   background-color: #1a1a1a;
 }
+
 
