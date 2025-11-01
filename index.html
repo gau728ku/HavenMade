@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Havenmade — Handmade & Natural Living</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fav icon placeholder -->
+  <link rel="icon" href="images/favicon.png" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <img src="images/logo-placeholder.png" alt="Havenmade Logo" class="logo">
+        <span class="brand-name">Havenmade</span>
+      </div>
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#collections">Collections</a>
+        <a href="#contact">Contact</a>
+        <button id="cart-btn" class="cart-btn">Cart <span id="cart-count">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="wrap hero-card">
+        <h1>Crafted by Hand, Inspired by Nature</h1>
+        <p class="hero-sub">Welcome to Havenmade — simple, natural, made with heart.</p>
+        <a href="#collections" class="btn-primary">Explore Our Creations</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="wrap section about">
+      <div class="about-inner">
+        <h2>Our Story</h2>
+        <p>Havenmade began from a love of simple living and honest craftsmanship. We create small-batch essentials designed to bring warmth and balance into everyday life. Each item is thoughtfully handmade using natural materials.</p>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS / PRODUCTS -->
+    <section id="collections" class="wrap section">
+      <h2>Our Creations</h2>
+      <p class="lead">Handmade essentials, home fragrance, and thoughtful gift pieces — crafted with intention.</p>
+
+      <div id="product-grid" class="grid">
+        <!-- Product cards are injected by script.js from products array -->
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="wrap section contact">
+      <h2>Contact</h2>
+      <p>Email: <strong>havenmadecare@gmail.com</strong></p>
+      <p>WhatsApp: <em>(add number later)</em></p>
+    </section>
+  </main>
+
+  <!-- CART / CHECKOUT MODAL -->
+  <div id="cart-modal" class="modal hidden">
+    <div class="modal-panel">
+      <button class="close" id="cart-close">&times;</button>
+      <h3>Your Cart</h3>
+      <div id="cart-items"></div>
+
+      <div class="cart-footer">
+        <div class="subtotal">Subtotal: <span id="cart-subtotal">?0</span></div>
+
+        <!-- Checkout options -->
+        <div class="checkout-area">
+          <h4>Checkout</h4>
+
+          <!-- UPI Manual Payment -->
+          <div class="checkout-block">
+            <h5>Pay by UPI (manual)</h5>
+            <p>Scan QR or use UPI ID: <strong>havenmade@upi</strong></p>
+            <img src="images/upi-qr-placeholder.png" alt="UPI QR" class="qr">
+            <p>After payment, paste the UPI transaction ID / screenshot in the order note on checkout.</p>
+            <button id="confirm-upi" class="btn-primary">I Paid — Send Order</button>
+          </div>
+
+          <hr>
+
+          <!-- Shiprocket placeholder -->
+          <div class="checkout-block">
+            <h5>Shiprocket Checkout</h5>
+            <p>If you prefer a full checkout + shipping & tracking, use Shiprocket checkout (connect later).</p>
+            <!-- Replace the href with your actual Shiprocket checkout link when ready -->
+            <a id="shiprocket-link" class="btn-outline" href="#" target="_blank">Shiprocket Checkout (placeholder)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>Havenmade — Handmade & Natural Living</div>
+      <div>© <span id="year"></span></div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
