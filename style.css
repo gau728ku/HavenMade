@@ -286,3 +286,87 @@ body{margin:0;font-family:'Poppins',sans-serif;background:var(--cream);color:#22
   color: #3a3a3a;
 }
 
+/* 🧴 Best Sellers Section */
+.best-sellers {
+  background-color: #faf7f2;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.best-sellers .container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.best-sellers h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2f2f2f;
+  margin-bottom: 8px;
+}
+
+.best-sellers .subtitle {
+  color: #7a7a7a;
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.product-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.product-card .desc {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.product-card .price {
+  display: block;
+  font-weight: 600;
+  color: #3a3a3a;
+  margin-bottom: 10px;
+}
+
+.product-card button {
+  background-color: #2e2e2e;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.product-card button:hover {
+  background-color: #1a1a1a;
+}
+
