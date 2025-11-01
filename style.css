@@ -454,4 +454,71 @@ body{margin:0;font-family:'Poppins',sans-serif;background:var(--cream);color:#22
   line-height: 1.5;
 }
 
+/* Join Our Community */
+.join-community {
+  background: linear-gradient(to right, #f3e8df, #e7d9ce);
+  text-align: center;
+  padding: 80px 20px;
+  color: #3b2e2e;
+}
+
+.join-content {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.join-content h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  color: #3b2e2e;
+}
+
+.join-content p {
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+  color: #5b423f;
+  line-height: 1.6;
+}
+
+.join-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.join-form input[type="email"] {
+  padding: 12px 16px;
+  width: 260px;
+  border-radius: 6px;
+  border: 1px solid #c9b8a7;
+  font-size: 1rem;
+}
+
+.join-form button {
+  background-color: #3b2e2e;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.join-form button:hover {
+  background-color: #5b423f;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+
+
 
