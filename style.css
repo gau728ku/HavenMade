@@ -1009,6 +1009,77 @@ blockquote {
   color: #555;
 }
 
+.page-header {
+  text-align: center;
+  padding: 60px 20px 30px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #2c2c2c;
+  font-weight: 600;
+}
+
+.page-header p {
+  color: #666;
+  font-size: 1rem;
+  margin-top: 8px;
+}
+
+.track-order {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.track-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.track-form input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.track-form button {
+  padding: 12px 24px;
+  border: none;
+  background: #2f855a;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.track-form button:hover {
+  background: #276749;
+}
+
+.track-result {
+  text-align: left;
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+.order-card p {
+  margin: 8px 0;
+  color: #333;
+}
+
 
 
 
