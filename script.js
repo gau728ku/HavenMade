@@ -115,4 +115,37 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 })
 
+// Subscription form handler
+const form = document.getElementById('subscribe-form');
+const emailInput = document.getElementById('subscribe-email');
+const message = document.getElementById('subscribe-message');
+
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+
+    if (!email) {
+      message.textContent = 'Please enter a valid email.';
+      message.style.color = 'red';
+      return;
+    }
+
+    // Save email to Supabase
+    const { data, error } = await supabase
+      .from('subscribers')
+      .insert([{ email }]);
+
+    if (error) {
+      console.error(error);
+      message.textContent = 'Something went wrong. Please try again.';
+      message.style.color = 'red';
+    } else {
+      message.textContent = 'Thanks for joining our community!';
+      message.style.color = 'green';
+      form.reset();
+    }
+  });
+}
+
 
