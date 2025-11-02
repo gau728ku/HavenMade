@@ -931,6 +931,29 @@ blockquote {
   display: block;
 }
 
+.shipping-returns {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.shipping-returns .info-block {
+  margin-bottom: 40px;
+}
+
+.shipping-returns h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.shipping-returns ul {
+  margin-left: 20px;
+  list-style: disc;
+}
+
 
 
 
