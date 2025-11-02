@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order — HavenMade</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>Track Your Order</h1>
+    <p>Enter your Order ID or email address to see your current delivery status.</p>
+  </header>
+
+  <main class="track-order">
+    <form id="trackForm" class="track-form">
+      <input type="text" id="orderInput" placeholder="Enter Order ID or Email" required>
+      <button type="submit" class="btn-primary">Track Order</button>
+    </form>
+
+    <div id="trackResult" class="track-result hidden">
+      <h2>Order Status</h2>
+      <div class="order-card">
+        <p><strong>Order ID:</strong> <span id="resultOrderId"></span></p>
+        <p><strong>Status:</strong> <span id="resultStatus"></span></p>
+        <p><strong>Estimated Delivery:</strong> <span id="resultDelivery"></span></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 HavenMade. Made with 💚 for your skin.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Simple mock tracking logic
+    document.getElementById('trackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const input = document.getElementById('orderInput').value.trim();
+      const resultBox = document.getElementById('trackResult');
+      const idEl = document.getElementById('resultOrderId');
+      const statusEl = document.getElementById('resultStatus');
+      const deliveryEl = document.getElementById('resultDelivery');
+
+      if (!input) return alert('Please enter your order ID or email.');
+
+      // Mock response
+      idEl.textContent = input;
+      statusEl.textContent = "In Transit 🚚";
+      deliveryEl.textContent = "Expected delivery: 3–5 business days";
+
+      resultBox.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
 
