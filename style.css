@@ -790,6 +790,37 @@ body{margin:0;font-family:'Poppins',sans-serif;background:var(--cream);color:#22
   color: #000;
 }
 
+.our-story {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 4rem 2rem;
+}
+
+.story-text {
+  flex: 1;
+  max-width: 600px;
+}
+
+.story-text h1,
+.story-text h2 {
+  color: #4b3f3f;
+}
+
+.story-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.signature {
+  margin-top: 2rem;
+  font-style: italic;
+  color: #7b6e6e;
+}
+
 
 
 
