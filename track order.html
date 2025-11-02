@@ -34,26 +34,53 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    // Simple mock tracking logic
-    document.getElementById('trackForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const input = document.getElementById('orderInput').value.trim();
-      const resultBox = document.getElementById('trackResult');
-      const idEl = document.getElementById('resultOrderId');
-      const statusEl = document.getElementById('resultStatus');
-      const deliveryEl = document.getElementById('resultDelivery');
+ <script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-      if (!input) return alert('Please enter your order ID or email.');
+  const supabaseUrl = 'https://aejltrfuffkagrxivhei.supabase.co'
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFlamx0cmZ1ZmZrYWdyeGl2aGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwNzkxODMsImV4cCI6MjA3NzY1NTE4M30.FtqWMawlfvvUyDtmkomIHhNn1pIhDfuwOHFPYZyvvDo'
+  const supabase = createClient(supabaseUrl, supabaseKey)
 
-      // Mock response
-      idEl.textContent = input;
-      statusEl.textContent = "In Transit 🚚";
-      deliveryEl.textContent = "Expected delivery: 3–5 business days";
+  const form = document.getElementById('trackForm')
+  const resultBox = document.getElementById('trackResult')
+  const idEl = document.getElementById('resultOrderId')
+  const statusEl = document.getElementById('resultStatus')
+  const deliveryEl = document.getElementById('resultDelivery')
 
-      resultBox.classList.remove('hidden');
-    });
-  </script>
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const input = document.getElementById('orderInput').value.trim()
+
+    if (!input) return alert('Please enter your order ID or email.')
+
+    // Try to find by order_id or email
+    const { data, error } = await supabase
+      .from('orders')
+      .select('*')
+      .or(`order_id.eq.${input},email.eq.${input}`)
+      .limit(1)
+
+    if (error) {
+      console.error('Supabase error:', error)
+      alert('Error connecting to database.')
+      return
+    }
+
+    if (!data || data.length === 0) {
+      alert('No order found with that ID or email.')
+      resultBox.classList.add('hidden')
+      return
+    }
+
+    const order = data[0]
+    idEl.textContent = order.order_id
+    statusEl.textContent = order.status
+    deliveryEl.textContent = order.estimated_delivery || 'N/A'
+
+    resultBox.classList.remove('hidden')
+  })
+</script>
+
 </body>
 </html>
 
