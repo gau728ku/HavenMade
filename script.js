@@ -1,4 +1,8 @@
-﻿// Basic product data (edit this array to add/remove products)
+// ===========================
+// HAVENMADE MAIN JS FILE
+// ===========================
+
+// Basic product data (edit this array to add/remove products)
 const products = [
   {
     id: "p1",
@@ -23,7 +27,7 @@ const products = [
   }
 ];
 
-// Utility / DOM
+// Utility / DOM elements
 const grid = document.getElementById('product-grid');
 const cartBtn = document.getElementById('cart-btn');
 const cartModal = document.getElementById('cart-modal');
@@ -33,11 +37,14 @@ const cartItemsEl = document.getElementById('cart-items');
 const cartSubtotalEl = document.getElementById('cart-subtotal');
 const confirmUpi = document.getElementById('confirm-upi');
 
-// initialize year
+// Initialize current year in footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// render products
+// ----------------------------
+// Render Products on Homepage
+// ----------------------------
 function renderProducts(){
+  if(!grid) return;
   let html = '';
   products.forEach(p=>{
     html += `
@@ -56,8 +63,10 @@ function renderProducts(){
   grid.innerHTML = html;
 }
 
-// CART (localStorage)
-let cart = JSON.parse(localStorage.getItem('havenmade_cart')||'{}');
+// ----------------------------
+// CART FUNCTIONALITY
+// ----------------------------
+let cart = JSON.parse(localStorage.getItem('havenmade_cart') || '{}');
 
 function saveCart(){
   localStorage.setItem('havenmade_cart', JSON.stringify(cart));
@@ -66,8 +75,7 @@ function saveCart(){
 
 function updateCartUI(){
   const totalCount = Object.values(cart).reduce((s,i)=>s+i.qty,0);
-  cartCount.textContent = totalCount;
-  document.getElementById('cart-count').textContent = totalCount;
+  if (cartCount) cartCount.textContent = totalCount;
 }
 
 function addToCart(id){
@@ -82,30 +90,38 @@ function buyNow(id){
   openCart();
 }
 
-// Open cart modal and render items
+// Open / Close cart modal
 function openCart(){
-  cartModal.classList.remove('hidden');
-  renderCartItems();
+  if (cartModal) {
+    cartModal.classList.remove('hidden');
+    renderCartItems();
+  }
 }
 
 function closeCart(){
-  cartModal.classList.add('hidden');
+  if (cartModal) {
+    cartModal.classList.add('hidden');
+  }
 }
 
-cartBtn.addEventListener('click', openCart);
-cartClose.addEventListener('click', closeCart);
+if (cartBtn) cartBtn.addEventListener('click', openCart);
+if (cartClose) cartClose.addEventListener('click', closeCart);
 
-// Render cart
+// Render cart content
 function renderCartItems(){
+  if(!cartItemsEl) return;
+
   if(!cart || Object.keys(cart).length===0){
     cartItemsEl.innerHTML = '<p>Your cart is empty.</p>';
-    cartSubtotalEl.textContent = '₹0';
+    if (cartSubtotalEl) cartSubtotalEl.textContent = '₹0';
     return;
   }
+
   let html = '';
   let subtotal = 0;
   Object.keys(cart).forEach(id=>{
     const prod = products.find(p=>p.id===id);
+    if(!prod) return;
     const qty = cart[id].qty;
     const line = prod.price * qty;
     subtotal += line;
@@ -124,10 +140,10 @@ function renderCartItems(){
     `;
   });
   cartItemsEl.innerHTML = html;
-  cartSubtotalEl.textContent = `₹${subtotal}`;
+  if (cartSubtotalEl) cartSubtotalEl.textContent = `₹${subtotal}`;
 }
 
-// change qty
+// Change quantity
 function changeQty(id, qty){
   if(qty<=0){
     delete cart[id];
@@ -138,76 +154,48 @@ function changeQty(id, qty){
   renderCartItems();
 }
 
-// Confirm UPI (user clicked 'I paid' after manual UPI)
-confirmUpi.addEventListener('click', ()=>{
-  // simple flow: collect buyer details via prompt (you can replace with a real form)
-  const name = prompt('Your name');
-  const phone = prompt('Phone number (for shipping)');
-  const txn = prompt('Paste UPI txn id or type "paid" and press OK');
-  if(!name || !phone || !txn){ alert('Please provide details to confirm order'); return; }
+// Confirm UPI Order
+if (confirmUpi) {
+  confirmUpi.addEventListener('click', ()=>{
+    const name = prompt('Your name');
+    const phone = prompt('Phone number (for shipping)');
+    const txn = prompt('Paste UPI txn id or type "paid" and press OK');
+    if(!name || !phone || !txn){ alert('Please provide details to confirm order'); return; }
 
-  // Build order summary
-  const order = {
-    id: 'ORDER-'+Date.now(),
-    name, phone, txn,
-    items: cart,
-    subtotal: document.getElementById('cart-subtotal').innerText
-  };
+    const order = {
+      id: 'ORDER-'+Date.now(),
+      name, phone, txn,
+      items: cart,
+      subtotal: document.getElementById('cart-subtotal')?.innerText
+    };
 
-  // Here: you should send "order" to your email or Google Sheet.
-  // For now we display a success message and clear cart.
-  alert('Order received. Thank you! We will contact you for shipping.\nOrder ID: '+order.id);
+    alert('Order received. Thank you! We will contact you for shipping.\nOrder ID: '+order.id);
 
-  // clear cart
-  cart = {};
-  saveCart();
-  renderCartItems();
-  closeCart();
-});
+    cart = {};
+    saveCart();
+    renderCartItems();
+    closeCart();
+  });
+}
 
-// init
-renderProducts();
-updateCartUI();
-renderCartItems();
+// ----------------------------
+// SEARCH FUNCTIONALITY
+// ----------------------------
+const searchBtn = document.getElementById("searchBtn");
+const searchInput = document.getElementById("searchInput");
 
-<script>
-  document.getElementById("searchBtn").addEventListener("click", function() {
-    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+if (searchBtn && searchInput) {
+  searchBtn.addEventListener("click", function() {
+    const query = searchInput.value.trim().toLowerCase();
     if (query) {
-      // Redirect to a search results page (you’ll create this later)
       window.location.href = `search.html?query=${encodeURIComponent(query)}`;
     }
   });
-</script>
+}
 
-// --- ADD TO CART FUNCTIONALITY ---
-
-// Get all Add to Cart buttons
-const addToCartButtons = document.querySelectorAll('.add-to-cart');
-
-// Load existing cart from localStorage (or start empty)
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-// Add click event to each button
-addToCartButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const name = button.getAttribute('data-name');
-    const price = parseInt(button.getAttribute('data-price'));
-    const image = button.getAttribute('data-image');
-
-    // Check if already in cart
-    const existingItem = cart.find(item => item.name === name);
-    if (existingItem) {
-      existingItem.quantity = (existingItem.quantity || 1) + 1;
-    } else {
-      cart.push({ name, price, image, quantity: 1 });
-    }
-
-    // Save updated cart
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Small visual feedback
-    alert(`${name} added to cart 🛒`);
-  });
-});
-
+// ----------------------------
+// INITIALIZATION
+// ----------------------------
+renderProducts();
+updateCartUI();
+renderCartItems();
