@@ -67,3 +67,50 @@ function updateCartCount() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   cartCountEl.textContent = totalItems;
 }
+
+// =============================
+// Newsletter Join Form (Supabase)
+// =============================
+
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+// Your project URL
+const supabaseUrl = 'https://aejltrfuffkagrxivhei.supabase.co'
+// Use environment variable key for security
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+// Handle newsletter form
+document.addEventListener("DOMContentLoaded", () => {
+  const joinForm = document.querySelector(".join-form")
+  if (!joinForm) return
+
+  joinForm.addEventListener("submit", async (e) => {
+    e.preventDefault()
+
+    const emailInput = joinForm.querySelector("input[type='email']")
+    const email = emailInput.value.trim()
+
+    if (!email) {
+      alert("Please enter your email address.")
+      return
+    }
+
+    // Insert subscriber into Supabase
+    const { error } = await supabase
+      .from('newsletter_subscribers')
+      .insert([{ email }])
+
+    if (error) {
+      if (error.message.includes("duplicate key")) {
+        alert("You’re already subscribed 💚")
+      } else {
+        console.error("Supabase error:", error)
+        alert("Something went wrong. Please try again later.")
+      }
+    } else {
+      emailInput.value = ""
+      alert("🎉 Thanks for joining the HavenMade family!")
+    }
+  })
+})
