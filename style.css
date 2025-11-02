@@ -366,6 +366,80 @@ body{margin:0;font-family:'Poppins',sans-serif;background:var(--cream);color:#22
   transition: background 0.3s ease;
 }
 
+.best-sellers {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+  padding: 0 40px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  margin: 12px 0 4px;
+}
+
+.product-card .price {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.add-to-cart {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-to-cart:hover {
+  background: #444;
+}
+
+.view-all-container {
+  margin-top: 30px;
+}
+
+.view-all-btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.view-all-btn:hover {
+  background: #444;
+}
+
+
 /* View All Button */
 .view-all-container {
   text-align: center;
@@ -632,6 +706,7 @@ body{margin:0;font-family:'Poppins',sans-serif;background:var(--cream);color:#22
 .search-btn:hover {
   background-color: #555;
 }
+
 
 
 
