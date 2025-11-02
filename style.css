@@ -954,6 +954,61 @@ blockquote {
   list-style: disc;
 }
 
+.delivery-timeline {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f8f8;
+  border-radius: 16px;
+  margin: 50px auto;
+  max-width: 900px;
+}
+
+.delivery-timeline h2 {
+  font-size: 1.6rem;
+  margin-bottom: 30px;
+  color: #222;
+  font-weight: 600;
+}
+
+.timeline-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.timeline-step {
+  flex: 1;
+  min-width: 220px;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeline-step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+.step-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.timeline-step h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.timeline-step p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
 
 
 
