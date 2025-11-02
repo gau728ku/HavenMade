@@ -77,7 +77,7 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 // Your project URL
 const supabaseUrl = 'https://aejltrfuffkagrxivhei.supabase.co'
 // Use environment variable key for security
-const supabaseKey = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFlamx0cmZ1ZmZrYWdyeGl2aGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwNzkxODMsImV4cCI6MjA3NzY1NTE4M30.FtqWMawlfvvUyDtmkomIHhNn1pIhDfuwOHFPYZyvvDo
+const supabaseKey = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 // Handle newsletter form
@@ -114,4 +114,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 })
+
 
