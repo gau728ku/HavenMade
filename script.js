@@ -180,18 +180,34 @@ renderCartItems();
   });
 </script>
 
-<script>
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+// --- ADD TO CART FUNCTIONALITY ---
 
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
-      const name = button.dataset.name;
-      const price = button.dataset.price;
-      const image = button.dataset.image;
+// Get all Add to Cart buttons
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
-      cart.push({ name, price, image });
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${name} added to cart!`);
-    });
+// Load existing cart from localStorage (or start empty)
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Add click event to each button
+addToCartButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const name = button.getAttribute('data-name');
+    const price = parseInt(button.getAttribute('data-price'));
+    const image = button.getAttribute('data-image');
+
+    // Check if already in cart
+    const existingItem = cart.find(item => item.name === name);
+    if (existingItem) {
+      existingItem.quantity = (existingItem.quantity || 1) + 1;
+    } else {
+      cart.push({ name, price, image, quantity: 1 });
+    }
+
+    // Save updated cart
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Small visual feedback
+    alert(`${name} added to cart 🛒`);
   });
-</script>
+});
+
