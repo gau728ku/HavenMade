@@ -611,6 +611,28 @@ body{margin:0;font-family:'Poppins',sans-serif;background:var(--cream);color:#22
   color: #d46a6a;
 }
 
+.search-bar {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-btn {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #555;
+}
+
 
 
 
