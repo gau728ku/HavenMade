@@ -69,58 +69,29 @@ function updateCartCount() {
 }
 
 // =============================
-// Newsletter Join Form (Supabase)
+// Supabase Setup
 // =============================
-
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-// Your project URL
+// Your Supabase project URL
 const supabaseUrl = 'https://aejltrfuffkagrxivhei.supabase.co'
-// Use environment variable key for security
-const supabaseKey = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+// Your public (anon) API key
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFlamx0cmZ1ZmZrYWdyeGl2aGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwNzkxODMsImV4cCI6MjA3NzY1NTE4M30.FtqWMawlfvvUyDtmkomIHhNn1pIhDfuwOHFPYZyvvDo'
+
+// Create Supabase client
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-// Handle newsletter form
+
+// =============================
+// Newsletter Join Form Handler
+// =============================
 document.addEventListener("DOMContentLoaded", () => {
-  const joinForm = document.querySelector(".join-form")
-  if (!joinForm) return
+  const form = document.getElementById('subscribe-form');
+  const emailInput = document.getElementById('subscribe-email');
+  const message = document.getElementById('subscribe-message');
 
-  joinForm.addEventListener("submit", async (e) => {
-    e.preventDefault()
+  if (!form) return;
 
-    const emailInput = joinForm.querySelector("input[type='email']")
-    const email = emailInput.value.trim()
-
-    if (!email) {
-      alert("Please enter your email address.")
-      return
-    }
-
-    // Insert subscriber into Supabase
-    const { error } = await supabase
-      .from('newsletter_subscribers')
-      .insert([{ email }])
-
-    if (error) {
-      if (error.message.includes("duplicate key")) {
-        alert("You’re already subscribed 💚")
-      } else {
-        console.error("Supabase error:", error)
-        alert("Something went wrong. Please try again later.")
-      }
-    } else {
-      emailInput.value = ""
-      alert("🎉 Thanks for joining the HavenMade family!")
-    }
-  })
-})
-
-// Subscription form handler
-const form = document.getElementById('subscribe-form');
-const emailInput = document.getElementById('subscribe-email');
-const message = document.getElementById('subscribe-message');
-
-if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = emailInput.value.trim();
@@ -131,21 +102,28 @@ if (form) {
       return;
     }
 
-    // Save email to Supabase
-    const { data, error } = await supabase
+    // Insert subscriber email into Supabase table
+    const { error } = await supabase
       .from('subscribers')
       .insert([{ email }]);
 
     if (error) {
-      console.error(error);
-      message.textContent = 'Something went wrong. Please try again.';
-      message.style.color = 'red';
+      console.error("Supabase Error:", error);
+      if (error.message.includes("duplicate")) {
+        message.textContent = "You’re already subscribed 💚";
+        message.style.color = 'orange';
+      } else {
+        message.textContent = 'Something went wrong. Please try again.';
+        message.style.color = 'red';
+      }
     } else {
-      message.textContent = 'Thanks for joining our community!';
+      message.textContent = '🎉 Thanks for joining the HavenMade family!';
       message.style.color = 'green';
       form.reset();
     }
   });
-}
+});
+
+
 
 
