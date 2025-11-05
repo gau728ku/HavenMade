@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Results | HavenMade</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .search-results {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .search-results h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    .products-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+    .product-card {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 15px;
+      width: 220px;
+      text-align: center;
+      background: #fff;
+      transition: 0.3s;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .product-card h4 {
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="search-results">
+    <h2 id="search-title">Search results</h2>
+    <div class="products-grid" id="results-container"></div>
+  </div>
+
+  <script>
+    // Get search query from URL
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("query") || "";
+    document.getElementById("search-title").textContent = `Search results for "${query}"`;
+
+    // Demo product list (replace later with real data)
+    const products = [
+      { name: "Lavender Soap", img: "images/soap1.jpg" },
+      { name: "Rose Body Bar", img: "images/soap2.jpg" },
+      { name: "Coconut Milk Soap", img: "images/soap3.jpg" },
+      { name: "Gift Set – Trio Soaps", img: "images/soap4.jpg" },
+    ];
+
+    const container = document.getElementById("results-container");
+
+    // Filter matching products (simple name match)
+    const results = products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+
+    if (results.length > 0) {
+      results.forEach(p => {
+        const card = document.createElement("div");
+        card.classList.add("product-card");
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <h4>${p.name}</h4>
+        `;
+        container.appendChild(card);
+      });
+    } else {
+      container.innerHTML = "<p>No products found.</p>";
+    }
+  </script>
+</body>
+</html>
+

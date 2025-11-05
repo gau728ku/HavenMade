@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Your Order — HavenMade</title>
+    <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fav icon placeholder -->
+  <link rel="icon" href="images/Logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="main-header">
+  <div class="top-banner">
+    ✨ Free Shipping on Orders Over ₹999 + Free Gift with Every Purchase 🎁
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/home/Logo.png" alt="Havenmade Logo" class="logo">
+      <div class="brand-text">
+        <h2>HavenMade</h2>
+        <span class="tagline">NATURAL SKINCARE</span>
+      </div>
+    </div>
+
+    <div class="nav-center">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop All</a></li>
+        <li><a href="facecare.html">Face Care</a></li>
+        <li><a href="bodycare.html">Body Care</a></li>
+        <li><a href="giftsets.html">Gift Sets</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+
+   <div class="nav-right">
+  <input type="text" id="searchInput" placeholder="Search products..." class="search-bar">
+  <button id="searchBtn" class="search-btn">
+    <i class="fa fa-search"></i>
+  </button>
+
+  <!-- Profile -->
+  <a href="profile.html" class="icon"><i class="fa fa-user"></i></a>
+
+  <!-- Cart -->
+  <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i></a>
+</div>
+
+  </nav>
+</header>
+
+    <h1>Track Your Order</h1>
+    <p>Enter your tracking ID to check your delivery status.</p>
+  </header>
+
+  <!-- Tracking Form -->
+  <section class="track-container">
+    <form id="trackForm">
+      <input type="text" id="trackingInput" placeholder="Enter Tracking ID or AWB" required />
+      <button type="submit">Track Order</button>
+    </form>
+    <p class="note">You’ll be redirected to Shiprocket’s tracking page.</p>
+  </section>
+
+  <!-- Thank You + Products in One Row -->
+  <section class="thankyou-products">
+    <div class="thank-you-text">
+      <h2>Thank you for shopping with <span>HavenMade 💚</span></h2>
+      <p>We hope you enjoy your purchase.<br>
+      Meanwhile, explore our bestsellers.</p>
+    </div>
+
+    <div class="product-slider">
+      <div class="product-track">
+      <div class="product-card">
+        <img src="images/track order/Aloe and Cucumber.jpeg" alt="Aloe and Cucumber">
+        <h4>Aloe and Cucumber</h4>
+        <p>₹199</p>
+      </div>
+      <div class="product-card">
+        <img src="images/track order/honey & oats.jpeg" alt="Honey & Oats">
+        <h4>Honey & Oats</h4>
+        <p>₹249</p>
+      </div>
+      <div class="product-card">
+        <img src="images/track order/lemon+orange.jpeg" alt="lemon+orange">
+        <h4>Lemon+Orange</h4>
+        <p>₹229</p>
+      </div>
+      <div class="product-card">
+        <img src="images/track order/Rose Bliss.jpeg" alt="Rose Bliss">
+        <h4>Rose Bliss</h4>
+        <p>₹199</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-brand">
+      <h2>HavenMade</h2>
+      <p>Handcrafted natural soaps made with love and care for your skin and the planet.</p>
+      <div class="footer-social">
+        <a href="#" title="Instagram"><img src="images/home/instagram_icon.jpg" alt="Instagram"></a>
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=havenmadecare@gmail.com" target="_blank" title="Email us">
+  <img src="images/home/mail_icon.png" alt="Email">
+  
+</a>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <div>
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="facecare.html">Face Care</a></li>
+          <li><a href="bodycare.html">Body Care</a></li>
+          <li><a href="giftsets.html">Gift Sets</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>About</h3>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="ingredients.html">Ingredients</a></li>
+          <li><a href="sustainability.html">Sustainability</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Support</h3>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="shipping & returns.html">Shipping & Returns</a></li>
+          <li><a href="track order.html">Track Order</a></li>
+          <li><a href="privacy policy.html">Privacy Policy</a></li>
+          <li><a href="terms of service.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 HavenMade. All rights reserved. Made with <span>♥</span> for your skin.</p>
+  </div>
+</footer>
+
+
+<!-- Scripts -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
+
