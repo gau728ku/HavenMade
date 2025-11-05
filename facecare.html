@@ -3,16 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Face Care | HavenMade</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Face Care — HavenMade</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fav icon placeholder -->
+  <link rel="icon" href="images/Logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
-  <header>
-    <h1>Face Care</h1>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="top-banner">✨ Free Shipping on Orders Over ₹999 + Free Gift with Every Purchase 🎁</div>
+    <nav class="navbar">
+      <div class="nav-left">
+        <img src="images/home/Logo.png" alt="HavenMade Logo" class="logo">
+        <div class="brand-text">
+          <h2>HavenMade</h2>
+          <span class="tagline">NATURAL SKINCARE</span>
+        </div>
+      </div>
+      <div class="nav-center">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="facecare.html" class="active">Face Care</a></li>
+          <li><a href="bodycare.html">Body Care</a></li>
+          <li><a href="giftsets.html">Gift Sets</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <input type="text" placeholder="Search products..." class="search-bar">
+        <button class="search-btn"><i class="fa fa-search"></i></button>
+        <a href="profile.html" class="icon"><i class="fa fa-user"></i></a>
+        <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i></a>
+      </div>
+    </nav>
   </header>
-  <main>
-    <p>Explore our collection of gentle, nourishing soaps designed for your face’s delicate skin.</p>
-    <!-- You can add product cards here later -->
-  </main>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section" style="background-color:#f9f6f1;">
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="badge">Gentle • Nourishing • Natural</span>
+        <h1>Face Care Collection</h1>
+        <p>Discover our handcrafted bars designed for delicate facial skin — gentle cleansing, deep nourishment, and a natural glow.</p>
+        <div class="hero-buttons">
+          <a href="shop.html" class="btn-primary">Shop All</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="images/facecare/face-banner.jpg" alt="Face Care Collection">
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT GRID -->
+  <section class="section" style="padding-top:40px;">
+    <div class="wrap">
+      <h2>Our Face Care Bars</h2>
+      <div class="grid">
+
+        <!-- Product 1 -->
+        <div class="product-card" id="aloe-cucumber">
+          <img src="images/facecare/Aloe and Cucumber.jpeg" alt="Aloe & Cucumber">
+          <h4>Aloe & Cucumber</h4>
+          <p>Hydrating & soothing for sensitive skin</p>
+          <p><strong>₹349</strong></p>
+           <button class="add-to-cart" data-name="Aloe & Cucumber" data-price="349" data-image="images/facecare/Aloe and Cucumber.jpeg">Add to Cart</button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" id="charcoal-detox">
+          <img src="images/facecare/Charcoal Detox.jpeg" alt="Charcoal Detox">
+          <h4>Charcoal Detox</h4>
+          <p>Deep cleansing for clear, refreshed skin</p>
+          <p><strong>₹279</strong></p>
+           <button class="add-to-cart" data-name="Lavender Calm" data-price="279" data-image="images/facecare/Charcoal Detox.jpeg">Add to Cart</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card" id="honey-oats">
+          <img src="images/facecare/honey & oats.jpeg" alt="Honey & Oats">
+          <h4>Honey & Oats</h4>
+          <p>Gently exfoliating & deeply moisturizing</p>
+          <p><strong>₹249</strong></p>
+           <button class="add-to-cart" data-name="Honey & Oats" data-price="249" data-image="images/facecare/honey & oats.jpeg">Add to Cart</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>HavenMade</h2>
+        <p>Handcrafted natural soaps made with love and care for your skin and the planet.</p>
+        <div class="footer-social">
+          <a href="#"><img src="images/home/instagram_icon.jpg" alt="Instagram"></a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=havenmadecare@gmail.com" target="_blank">
+            <img src="images/home/mail_icon.png" alt="Email">
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div>
+          <h3>Shop</h3>
+          <ul>
+            <li><a href="shop.html">Shop All</a></li>
+            <li><a href="facecare.html">Face Care</a></li>
+            <li><a href="bodycare.html">Body Care</a></li>
+            <li><a href="giftsets.html">Gift Sets</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>About</h3>
+          <ul>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="ingredients.html">Ingredients</a></li>
+            <li><a href="sustainability.html">Sustainability</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Support</h3>
+          <ul>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="shipping & returns.html">Shipping & Returns</a></li>
+            <li><a href="track order.html">Track Order</a></li>
+            <li><a href="privacy policy.html">Privacy Policy</a></li>
+            <li><a href="terms of service.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 HavenMade. All rights reserved. Made with <span>♥</span> for your skin.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
 </body>
 </html>

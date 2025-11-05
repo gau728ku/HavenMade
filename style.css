@@ -1,4 +1,4 @@
-﻿:root{
+:root{
   --cream:#f8f6f3;
   --olive:#2f4b36;
   --sage:#607d3b;
@@ -1344,7 +1344,7 @@ body {
 
 .product-card {
   flex: 0 0 auto;
-  width: 180px;
+  width: 320px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -1523,4 +1523,16 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.product-card a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
