@@ -318,3 +318,71 @@ if (document.readyState === 'loading') {
 } else {
     initializeCart();
 }
+
+// Product descriptions data
+const productDescriptions = {
+  "Lavender Calm": "Soothe your senses with our calming lavender blend. Perfect for evening relaxation and gentle enough for sensitive skin.",
+  "Aloe & Cucumber": "Refresh and hydrate with the cooling duo of aloe vera and cucumber. Ideal for hot days and post-workout freshness.",
+  "Charcoal Detox": "Deep cleanse with activated charcoal that draws out impurities. Great for oily and combination skin types.",
+  "Rose Petal Bliss": "Indulge in luxury with rose petals and shea butter. Leaves skin feeling soft, nourished, and beautifully fragrant.",
+  "Honey-Oats": "Gentle exfoliation meets deep moisturization. Honey and oats work together to soothe and soften even the driest skin.",
+  "Lemon-Orange": "Awaken your senses with the zesty duo of lemon and orange. This citrus burst provides a refreshing start to your day while naturally brightening your skin.",
+  "Glow & Calm Duo": "Indulge in the perfect balance of radiance and relaxation. This exquisite pairing combines our bestselling Rose Bliss for luminous, hydrated skin with the gentle exfoliation of Honey & Oats. Thoughtfully presented in an eco-friendly kraft box that's as beautiful as it is sustainable - perfect for gifting or treating yourself to everyday luxury.",
+  "Refresh Duo": "A vibrant awakening for your senses and skin. Energize your routine with this zesty combination of Lemon + Orange for brightening, Aloe Cucumber for soothing hydration, and Mint Charcoal for deep purification. Three distinct experiences that work in harmony to refresh, revive, and rejuvenate your skin from head to toe.",
+  "Luxe Spa Set": "Transform your bathroom into a personal sanctuary. Experience ultimate relaxation with our calming Lavender Calm, nourishing Honey & Oats, and complete the ritual with our elegant Wooden Soap Dish. This curated collection turns everyday bathing into a luxurious spa-like retreat, promoting mindfulness and self-care with every use.",
+  "Celebration Hamper": "The ultimate gift for special moments. This generous collection features 4 assorted soaps carefully selected for variety and luxury, accompanied by a handwritten greeting card and stylish jute pouch. Perfect for birthdays, anniversaries, holidays, or simply celebrating life's beautiful moments with someone special."
+
+};
+
+// Product Quick View functionality - SIMPLE FIX
+document.addEventListener('DOMContentLoaded', function() {
+  const productModal = document.getElementById('productModal');
+  if (!productModal) return;
+
+  // Make product cards clickable
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      // Don't open modal if Add to Cart button was clicked
+      if (e.target.classList.contains('add-to-cart') || e.target.closest('.add-to-cart')) {
+        return;
+      }
+      
+      // Get product data from data attributes (most reliable method)
+      const addToCartBtn = this.querySelector('.add-to-cart');
+      const productName = addToCartBtn?.getAttribute('data-name') || 'Product Name';
+      const productPrice = addToCartBtn?.getAttribute('data-price') || 'Price not available';
+      const productImage = addToCartBtn?.getAttribute('data-image') || '';
+      const img = this.querySelector('img');
+      
+      // Set modal content
+      document.getElementById('modalProductImage').src = productImage || img?.src || '';
+      document.getElementById('modalProductName').textContent = productName;
+      document.getElementById('modalProductPrice').textContent = '₹' + productPrice;
+      
+      // Get description from our data
+      const description = productDescriptions[productName] || 'Product description not available';
+      document.getElementById('modalProductDesc').textContent = description;
+      
+      // Set up modal add to cart button
+      document.getElementById('modalAddToCart').onclick = function() {
+        if (addToCartBtn) addToCartBtn.click();
+        productModal.classList.add('hidden');
+      };
+      
+      // Show modal
+      productModal.classList.remove('hidden');
+    });
+  });
+
+  // Close modal
+  document.querySelector('#productModal .close').addEventListener('click', function() {
+    productModal.classList.add('hidden');
+  });
+
+  // Close modal when clicking outside
+  productModal.addEventListener('click', function(e) {
+    if (e.target === productModal) {
+      productModal.classList.add('hidden');
+    }
+  });
+});

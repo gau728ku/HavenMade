@@ -196,7 +196,7 @@
           <h3>Rose Petal Bliss</h3>
           <p class="desc">Luxurious rose & shea butter</p>
           <span class="price">₹399</span>
-          <button class="add-to-cart" data-name="Rose Bliss" data-price="399" data-image="images/shop all/Rose Bliss.jpeg">Add to Cart</button>
+          <button class="add-to-cart" data-name="Rose Petal Bliss" data-price="399" data-image="images/shop all/Rose Bliss.jpeg">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -325,3 +325,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
+<!-- Product Quick View Modal -->
+<div id="productModal" class="modal hidden">
+  <div class="modal-panel product-modal">
+    <button class="close">&times;</button>
+    <div class="modal-content">
+      <div class="modal-image">
+        <img id="modalProductImage" src="" alt="">
+      </div>
+      <div class="modal-details">
+        <h3 id="modalProductName"></h3>
+        <p id="modalProductDesc"></p>
+        <span id="modalProductPrice" class="price"></span>
+        <div class="modal-actions">
+          <button class="add-to-cart" id="modalAddToCart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
