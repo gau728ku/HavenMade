@@ -1,0 +1,320 @@
+// cart.js - Dedicated cart page functionality
+console.log("🛒 cart.js loaded");
+
+// Make sure updateCartCount is available
+if (typeof updateCartCount !== 'function') {
+    console.warn('updateCartCount not found, defining fallback');
+    function updateCartCount() {
+        let cart = [];
+        try {
+            cart = JSON.parse(localStorage.getItem("cart")) || [];
+        } catch (e) {
+            console.warn("Cart data invalid, clearing...");
+            localStorage.removeItem("cart");
+            cart = [];
+        }
+
+        const validItems = cart.filter(item => 
+            item && 
+            typeof item.quantity === "number" && 
+            item.quantity > 0
+        );
+
+        const totalCount = validItems.reduce((sum, item) => sum + item.quantity, 0);
+        
+        const countElements = document.querySelectorAll('.cart-count');
+        countElements.forEach(element => {
+            element.textContent = totalCount > 0 ? totalCount : "0";
+        });
+        
+        console.log("🔄 Cart count updated:", totalCount);
+        return totalCount;
+    }
+}
+
+function initializeCart() {
+    console.log("Initializing cart...");
+    
+    const cartItemsContainer = document.getElementById("cart-items");
+    const savedItemsContainer = document.getElementById("saved-items");
+    const emptyCartMsg = document.getElementById("empty-cart");
+    const emptySavedMsg = document.getElementById("empty-saved");
+    const subtotalEl = document.getElementById("subtotal");
+    const totalEl = document.getElementById("cart-total");
+
+    if (!cartItemsContainer) {
+        console.error("❌ Cart items container not found!");
+        return;
+    }
+
+    console.log("✅ Cart elements found");
+
+    function loadCartData() {
+        let cart = [];
+        let saved = [];
+        
+        try {
+            const cartData = localStorage.getItem("cart");
+            console.log("📦 Raw cart data:", cartData);
+            
+            cart = JSON.parse(cartData) || [];
+            saved = JSON.parse(localStorage.getItem("saved")) || [];
+        } catch (e) {
+            console.error("❌ Error parsing cart data:", e);
+            cart = [];
+            saved = [];
+        }
+
+        console.log("🛒 Cart items:", cart);
+        console.log("💾 Saved items:", saved);
+
+        // Clear containers
+        cartItemsContainer.innerHTML = "";
+        if (savedItemsContainer) savedItemsContainer.innerHTML = "";
+
+        // Handle empty states
+        if (emptyCartMsg) {
+            emptyCartMsg.style.display = cart.length > 0 ? "none" : "block";
+        }
+        if (emptySavedMsg && savedItemsContainer) {
+            emptySavedMsg.style.display = saved.length > 0 ? "none" : "block";
+        }
+
+        // Render cart items
+        if (cart.length > 0) {
+            cart.forEach((item, index) => {
+                if (!item || !item.name) {
+                    console.warn("⚠️ Invalid cart item:", item);
+                    return;
+                }
+
+                const cartItem = document.createElement("div");
+                cartItem.className = "cart-item";
+                cartItem.innerHTML = `
+                    <img src="${item.image || 'images/default.jpg'}" alt="${item.name}" class="cart-img" />
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p>₹${item.price}</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus" data-index="${index}">−</button>
+                            <span class="item-quantity">${item.quantity || 1}</span>
+                            <button class="qty-btn plus" data-index="${index}">+</button>
+                        </div>
+                        <div class="cart-actions">
+                            <button class="remove-btn" data-index="${index}">Remove</button>
+                            <button class="save-btn" data-index="${index}">Save for Later</button>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+            console.log(`✅ Rendered ${cart.length} cart items`);
+        }
+
+        // Render saved items
+        if (saved.length > 0 && savedItemsContainer) {
+            saved.forEach((item, index) => {
+                if (!item || !item.name) return;
+                
+                const savedItem = document.createElement("div");
+                savedItem.className = "saved-item";
+                savedItem.innerHTML = `
+                    <img src="${item.image || 'images/default.jpg'}" alt="${item.name}" class="cart-img" />
+                    <div>
+                        <h4>${item.name}</h4>
+                        <p>₹${item.price}</p>
+                        <button class="restore-btn" data-index="${index}">Move to Cart</button>
+                    </div>
+                `;
+                savedItemsContainer.appendChild(savedItem);
+            });
+        }
+
+        updateCartSummary(cart);
+        updateCartCount(); // Update cart count on cart page too
+    }
+
+    function updateCartSummary(cart) {
+        if (!subtotalEl || !totalEl) return;
+        
+        const subtotal = cart.reduce((total, item) => {
+            return total + (item.price * (item.quantity || 1));
+        }, 0);
+        
+        subtotalEl.textContent = `₹${subtotal.toFixed(2)}`;
+        totalEl.textContent = `₹${subtotal.toFixed(2)}`;
+        
+        console.log("💰 Cart summary updated - Subtotal:", subtotal);
+    }
+
+    // Add this function to handle "You Might Also Like" add to cart buttons
+    function setupProductCardListeners() {
+        console.log("Setting up product card listeners...");
+        
+        // Listen for clicks on "You Might Also Like" add to cart buttons
+        document.addEventListener('click', function(e) {
+            const addToCartBtn = e.target.closest('.add-to-cart');
+            if (!addToCartBtn) return;
+            
+            // Check if this is from the "You Might Also Like" section
+            const productCard = addToCartBtn.closest('.product-card');
+            if (!productCard) return;
+            
+            console.log("Add to cart clicked in product card on cart page");
+            
+            const name = addToCartBtn.dataset.name;
+            const price = parseFloat(addToCartBtn.dataset.price);
+            const image = addToCartBtn.dataset.image || 'images/default.jpg';
+            
+            if (!name || isNaN(price)) {
+                console.warn("Invalid product data");
+                return;
+            }
+            
+            addToCart(name, price, image);
+        });
+    }
+
+    // Unified add to cart function for cart page
+    function addToCart(name, price, image) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        
+        // Check if item already exists in cart
+        const existingItemIndex = cart.findIndex(item => item.name === name);
+        
+        if (existingItemIndex !== -1) {
+            // Item exists, increase quantity
+            cart[existingItemIndex].quantity += 1;
+        } else {
+            // Add new item
+            cart.push({
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+        }
+        
+        localStorage.setItem("cart", JSON.stringify(cart));
+        console.log("Product added to cart from cart page:", { name, price, image });
+        
+        // Update cart count
+        updateCartCount();
+        
+        // Show success message
+        showPopup(`✅ ${name} added to cart!`);
+        
+        // Reload cart display
+        loadCartData();
+    }
+
+    // Event handlers for cart actions
+    function setupEventListeners() {
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("plus")) {
+                handleQuantityChange(e.target.dataset.index, 1);
+            } else if (e.target.classList.contains("minus")) {
+                handleQuantityChange(e.target.dataset.index, -1);
+            } else if (e.target.classList.contains("remove-btn")) {
+                handleRemoveItem(e.target.dataset.index);
+            } else if (e.target.classList.contains("save-btn")) {
+                handleSaveForLater(e.target.dataset.index);
+            } else if (e.target.classList.contains("restore-btn")) {
+                handleRestoreItem(e.target.dataset.index);
+            }
+        });
+    }
+
+    function handleQuantityChange(index, change) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        index = parseInt(index);
+        
+        if (cart[index]) {
+            cart[index].quantity = (cart[index].quantity || 1) + change;
+            if (cart[index].quantity < 1) cart[index].quantity = 1;
+            
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCartData();
+            updateCartCount();
+        }
+    }
+
+    function handleRemoveItem(index) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        index = parseInt(index);
+        
+        if (cart[index]) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCartData();
+            updateCartCount();
+        }
+    }
+
+    function handleSaveForLater(index) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let saved = JSON.parse(localStorage.getItem("saved")) || [];
+        index = parseInt(index);
+        
+        if (cart[index]) {
+            saved.push(cart[index]);
+            cart.splice(index, 1);
+            
+            localStorage.setItem("cart", JSON.stringify(cart));
+            localStorage.setItem("saved", JSON.stringify(saved));
+            loadCartData();
+            updateCartCount();
+        }
+    }
+
+    function handleRestoreItem(index) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let saved = JSON.parse(localStorage.getItem("saved")) || [];
+        index = parseInt(index);
+        
+        if (saved[index]) {
+            cart.push(saved[index]);
+            saved.splice(index, 1);
+            
+            localStorage.setItem("cart", JSON.stringify(cart));
+            localStorage.setItem("saved", JSON.stringify(saved));
+            loadCartData();
+            updateCartCount();
+            
+            // Show success message
+            showPopup(`✅ ${saved[index].name} moved to cart!`);
+        }
+    }
+
+    // Add this popup function
+    function showPopup(message) {
+        const popup = document.createElement("div");
+        popup.textContent = message;
+        popup.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            z-index: 9999;
+            font-weight: 500;
+        `;
+        document.body.appendChild(popup);
+        setTimeout(() => popup.remove(), 2000);
+    }
+
+    // Initialize everything
+    loadCartData();
+    setupEventListeners();
+    setupProductCardListeners(); // Add this line
+    console.log("🎉 Cart initialized successfully");
+}
+
+// Wait for DOM to load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeCart);
+} else {
+    initializeCart();
+}

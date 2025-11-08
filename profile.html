@@ -1,15 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Profile – HavenMade</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile | HavenMade</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fav icon placeholder -->
+  <link rel="icon" href="images/Logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">HavenMade</a>
-    <h1>Profile</h1>
-  </header>
+  <!-- Header -->
+  <header class="main-header">
+  <div class="top-banner">
+    ✨ Free Shipping on Orders Over ₹999 + Free Gift with Every Purchase 🎁
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/home/Logo.png" alt="Havenmade Logo" class="logo">
+      <div class="brand-text">
+        <h2>HavenMade</h2>
+        <span class="tagline">NATURAL SKINCARE</span>
+      </div>
+    </div>
+
+    <div class="nav-center">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop All</a></li>
+        <li><a href="facecare.html">Face Care</a></li>
+        <li><a href="bodycare.html">Body Care</a></li>
+        <li><a href="giftsets.html">Gift Sets</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+
+   <div class="nav-right">
+  <input type="text" id="searchInput" placeholder="Search products..." class="search-bar">
+  <button id="searchBtn" class="search-btn">
+    <i class="fa fa-search"></i>
+  </button>
+
+  <!-- Profile -->
+  <a href="profile.html" class="icon"><i class="fa fa-user"></i></a>
+
+  <!-- Cart -->
+  <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i>
+  <span class="cart-count">0</span>
+  </a>
+</div>
+
+  </nav>
+</header>
+
+  <main class="profile-container">
+
+    <!-- Login / Signup Section -->
+    <section id="auth-section">
+      <h3>Login or Create Account</h3>
+      <input type="email" id="auth-email" placeholder="Email" required />
+      <input type="password" id="auth-password" placeholder="Password" required />
+      <button id="login-btn">Login</button>
+      <button id="signup-btn">Sign Up</button>
+      <p id="auth-message"></p>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile-section" style="display:none;">
+      <h3>Welcome, <span id="user-email"></span></h3>
+
+      <label>Name</label>
+      <input type="text" id="profile-name" placeholder="Enter your name" />
+
+      <label>Address</label>
+      <textarea id="profile-address" placeholder="Enter your delivery address"></textarea>
+
+      <button id="save-profile">Save</button>
+      <button id="logout-btn">Logout</button>
+
+      <h4>Your Orders</h4>
+      <ul id="orders-list">
+        <li>No orders found</li>
+      </ul>
+
+      <p id="profile-message"></p>
+    </section>
+
+  </main>
+
+  
+  <!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-brand">
+      <h2>HavenMade</h2>
+      <p>Handcrafted natural soaps made with love and care for your skin and the planet.</p>
+      <div class="footer-social">
+        <a href="#" title="Instagram"><img src="images/home/instagram_icon.jpg" alt="Instagram"></a>
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=havenmadecare@gmail.com" target="_blank" title="Email us">
+  <img src="images/home/mail_icon.png" alt="Email">
+  
+</a>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <div>
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="facecare.html">Face Care</a></li>
+          <li><a href="bodycare.html">Body Care</a></li>
+          <li><a href="giftsets.html">Gift Sets</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>About</h3>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="ingredients.html">Ingredients</a></li>
+          <li><a href="sustainability.html">Sustainability</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Support</h3>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="shipping & returns.html">Shipping & Returns</a></li>
+          <li><a href="track order.html">Track Order</a></li>
+          <li><a href="privacy policy.html">Privacy Policy</a></li>
+          <li><a href="terms of service.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 HavenMade. All rights reserved. Made with <span>♥</span> for your skin.</p>
+  </div>
+</footer>
+
+ <!-- Scripts -->
+
+  <script type="module" src="script.js"></script>
+
+<!-- Add this right before closing </body> tag in all pages -->
+<script>
+// Quick search fix
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', function() {
+            const term = searchInput.value.trim();
+            if (term) {
+                window.location.href = 'shop.html?search=' + term;
+            } else {
+                alert('Please enter a product name');
+            }
+        });
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+    }
+});
+</script>
+
 </body>
 </html>
-

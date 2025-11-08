@@ -43,16 +43,20 @@
     </div>
 
    <div class="nav-right">
-  <input type="text" id="searchInput" placeholder="Search products..." class="search-bar">
-  <button id="searchBtn" class="search-btn">
-    <i class="fa fa-search"></i>
-  </button>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search products..." class="search-bar">
+    <button id="searchBtn" class="search-btn">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
 
   <!-- Profile -->
   <a href="profile.html" class="icon"><i class="fa fa-user"></i></a>
 
   <!-- Cart -->
-  <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i></a>
+  <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i>
+  <span class="cart-count">0</span>
+  </a>
 </div>
 
   </nav>
@@ -73,7 +77,7 @@
       </div>
     </div>
     <div class="hero-image">
-      <img src="images/home/hero-soap.jpg" alt="Natural Soaps">
+      <img src="images/home/hero-soap.png" alt="Natural Soaps">
     </div>
   </div>
 </section>
@@ -86,14 +90,14 @@
   <div class="category-grid">
     <div class="category-item">
       <a href="facecare.html" class="category-card">
-      <img src="images/home/category-face.jpg" alt="Face Care">
+      <img src="images/home/category-face.png" alt="Face Care">
       <h3>Face Care</h3>
       </a>
     </div>
 
     <div class="category-item">
       <a href="bodycare.html" class="category-card">
-      <img src="images/home/category-body.jpg" alt="Body Care">
+      <img src="images/home/category-body.png" alt="Body Care">
       <h3>Body Care</h3>
       </a>
     </div>
@@ -116,39 +120,49 @@
     <div class="product-card">
       <img src="images/home/Lavender Calm.jpeg" alt="Lavender Calm">
       <h3>Lavender Calm</h3>
-      <p class="desc">Calming lavender </p>
       <span class="price">₹299</span>
-      <button class="add-to-cart" data-name="Lavender Calm" data-price="299" data-image="images/Lavender Calm.jpeg">Add to Cart</button>
+      <button class="add-to-cart" data-name="Lavender Calm" data-price="299" data-image="images/shop all/Lavender Calm.jpeg">Add to Cart</button>
     </div>
 
     <div class="product-card">
-      <img src="images/home/Aloe and Cucumber.jpeg" alt="Aloe & Cucumber">
+      <img src="images/home/Aloe & Cucumber.jpeg" alt="Aloe & Cucumber">
       <h3>Aloe & Cucumber</h3>
-      <p class="desc">Aloe And Cucumber</p>
       <span class="price">₹349</span>
-      <button class="add-to-cart" data-name="Aloe & Cucumber" data-price="349" data-image="images/Aloe and Cucumber.jpeg">Add to Cart</button>
+      <button class="add-to-cart" data-name="Aloe & Cucumber" data-price="349" data-image="images/shop all/Aloe & Cucumber.jpeg">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="images/home/Charcoal Detox.jpeg" alt="Charcoal Detox">
       <h3>Charcoal Detox</h3>
-      <p class="desc">Active Charcoal  </p>
       <span class="price">₹279</span>
-      <button class="add-to-cart" data-name="Charcoal Detox" data-price="279" data-image="images/charcoal Detox.jpeg">Add to Cart</button>
+      <button class="add-to-cart" data-name="Charcoal Detox" data-price="279" data-image="images/shop all/charcoal Detox.jpeg">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="images/home/Rose Bliss.jpeg" alt="Rose Petal Bliss">
       <h3>Rose Petal Bliss</h3>
-      <p class="desc">Luxurious rose & shea butter</p>
       <span class="price">₹399</span>
-      <button class="add-to-cart" data-name="Rose Petal Bliss" data-price="399" data-image="images/Rose Bliss.jpeg">Add to Cart</button>
+      <button class="add-to-cart" data-name="Rose Petal Bliss" data-price="399" data-image="images/shop all/Rose Bliss.jpeg">Add to Cart</button>
     </div>
   </div>
 
   <!-- View All Button -->
   <div class="view-all-container">
     <a href="shop.html" class="view-all-btn">View All Products</a>
+  </div>
+</section>
+
+<!-- 🎁 Gift Sets Promo Banner -->
+<section class="gift-banner">
+  <div class="gift-banner-content">
+    <div class="gift-banner-text">
+      <h2>✨ The Perfect Gift for Every Occasion</h2>
+      <p>Our handcrafted soaps, wrapped beautifully in eco-friendly boxes — because self-care makes the best gift.</p>
+      <a href="giftsets.html" class="gift-banner-btn">Shop Gift Sets</a>
+    </div>
+    <div class="gift-banner-image">
+      <img src="images/home/gift sets-banner.jpeg" alt="HavenMade Gift Set">
+    </div>
   </div>
 </section>
 
@@ -262,6 +276,53 @@
 
   <!-- Scripts -->
   <script type="module" src="script.js"></script>
+
+  <!-- Add this right before closing </body> tag in all pages -->
+<script>
+// Quick search fix
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', function() {
+            const term = searchInput.value.trim();
+            if (term) {
+                window.location.href = 'shop.html?search=' + term;
+            } else {
+                alert('Please enter a product name');
+            }
+        });
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+    }
+});
+</script>
+
+<!-- Product Quick View Modal -->
+<div id="productModal" class="modal hidden">
+  <div class="modal-panel product-modal">
+    <button class="close">&times;</button>
+    <div class="modal-content">
+      <div class="modal-image">
+        <img id="modalProductImage" src="" alt="">
+      </div>
+      <div class="modal-details">
+        <h3 id="modalProductName"></h3>
+        <p id="modalProductDesc"></p>
+        <span id="modalProductPrice" class="price"></span>
+        <div class="modal-actions">
+          <button class="add-to-cart" id="modalAddToCart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
 

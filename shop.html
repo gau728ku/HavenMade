@@ -51,7 +51,10 @@
   <a href="profile.html" class="icon"><i class="fa fa-user"></i></a>
 
   <!-- Cart -->
-  <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i></a>
+  <a href="cart.html" class="icon">
+    <i class="fa fa-shopping-cart"></i>
+  <span class="cart-count">0</span>
+  </a>
 </div>
 
   </nav>
@@ -64,53 +67,47 @@
   <h2>All Products</h2>
   <p>Our customers’ favorite handcrafted soaps</p>
 
-  <div class="product-grid">
+  <div class="product-grid" id="product-grid">
     <div class="product-card">
       <img src="images/shop all/Lavender Calm.jpeg" alt="Lavender Calm">
       <h3>Lavender Calm</h3>
-      <p>Calming lavender</p>
       <span class="price">₹299</span>
-      <button class="add-to-cart" data-name="Lavender Calm" data-price="299" data-image="images/lavender.jpg">Add to Cart</button>
+      <button class="add-to-cart" data-name="Lavender Calm" data-price="299" data-image="images/shop all/Lavender Calm.jpeg">Add to Cart</button>
     </div>
 
     <div class="product-card" id="aloe-cucumber">
-      <img src="images/shop all/Aloe and Cucumber.jpeg" alt="Aloe & Cucumber">
+      <img src="images/shop all/Aloe & Cucumber.jpeg" alt="Aloe & Cucumber">
       <h3>Aloe & Cucumber</h3>
-      <p>Aloe And Cucumber</p>
       <span class="price">₹349</span>
-      <button class="add-to-cart" data-name="Aloe & Cucumber" data-price="349" data-image="images/aloe.jpg">Add to Cart</button>
+      <button class="add-to-cart" data-name="Aloe & Cucumber" data-price="349" data-image="images/shop all/Aloe & Cucumber.jpeg">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="images/shop all/Charcoal Detox.jpeg" alt="Charcoal Detox">
       <h3>Charcoal Detox</h3>
-      <p>Active Charcoal</p>
       <span class="price">₹279</span>
-      <button class="add-to-cart" data-name="Charcoal Detox" data-price="279" data-image="images/charcoal.jpg">Add to Cart</button>
+      <button class="add-to-cart" data-name="Charcoal Detox" data-price="279" data-image="images/shop all/Charcoal Detox.jpeg">Add to Cart</button>
     </div>
 
     <div class="product-card" id="rose-bliss">
       <img src="images/shop all/Rose Bliss.jpeg" alt="Rose Petal Bliss">
       <h3>Rose Petal Bliss</h3>
-      <p>Luxurious rose & shea butter</p>
       <span class="price">₹399</span>
-      <button class="add-to-cart" data-name="Rose Petal Bliss" data-price="399" data-image="images/rose.jpg">Add to Cart</button>
+      <button class="add-to-cart" data-name="Rose Petal Bliss" data-price="399" data-image="images/shop all/Rose Bliss.jpeg">Add to Cart</button>
     </div>
 
-     <div class="product-card" id="honey-oats">
+     <div class="product-card" id="Honey-oats">
       <img src="images/shop all/honey & oats.jpeg" alt="honey-oats">
       <h3>Honey-Oats</h3>
-      <p>Honey and Oats</p>
       <span class="price">₹399</span>
-      <button class="add-to-cart" data-name="Rose Petal Bliss" data-price="399" data-image="images/rose.jpg">Add to Cart</button>
+      <button class="add-to-cart" data-name="Honey-Oats" data-price="399" data-image="images/shop all/honey & oats.jpeg">Add to Cart</button>
     </div>
 
-    <div class="product-card" id="lemon-orange">
-      <img src="images/shop all/lemon orange.jpeg" alt="lemon-orange">
+    <div class="product-card" id="Lemon-Orange">
+      <img src="images/shop all/lemon & orange.jpeg" alt="lemon-orange">
       <h3>Lemon-Orange</h3>
-      <p>Lemon and Orange</p>
       <span class="price">₹399</span>
-      <button class="add-to-cart" data-name="Rose Petal Bliss" data-price="399" data-image="images/rose.jpg">Add to Cart</button>
+      <button class="add-to-cart" data-name="Lemon-Orange" data-price="399" data-image="images/shop all/lemon & orange.jpeg">Add to Cart</button>
     </div>
   </div>
 
@@ -178,5 +175,103 @@
   <script type="module" src="script.js"></script>
     
   </main>
+
+  <script>
+// Temporary search test - add this to shop.html
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get('search');
+    
+    if (searchParam) {
+        // Simple filter - you can see this working immediately
+        const productCards = document.querySelectorAll('.product-card');
+        let foundCount = 0;
+        
+        productCards.forEach(card => {
+            const productName = card.querySelector('h3').textContent.toLowerCase();
+            if (productName.includes(searchParam.toLowerCase())) {
+                card.style.display = 'block';
+                foundCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Update title
+        const title = document.querySelector('.section-title');
+        if (title) {
+            title.textContent = `Search Results for "${searchParam}" (${foundCount} found)`;
+        }
+        
+        if (foundCount === 0) {
+            const productGrid = document.querySelector('.product-grid');
+            if (productGrid) {
+                productGrid.innerHTML += `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                        <h3>No products found for "${searchParam}"</h3>
+                        <p>Try: lavender, charcoal, rose, aloe</p>
+                        <button onclick="location.href='shop.html'" style="
+                            background: #4b7c3b;
+                            color: white;
+                            border: none;
+                            padding: 10px 20px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            margin-top: 10px;
+                        ">Show All Products</button>
+                    </div>
+                `;
+            }
+        }
+    }
+});
+</script>
+
+<!-- Add this right before closing </body> tag in all pages -->
+<script>
+// Quick search fix
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', function() {
+            const term = searchInput.value.trim();
+            if (term) {
+                window.location.href = 'shop.html?search=' + term;
+            } else {
+                alert('Please enter a product name');
+            }
+        });
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+    }
+});
+</script>
+
+<!-- Product Quick View Modal -->
+<div id="productModal" class="modal hidden">
+  <div class="modal-panel product-modal">
+    <button class="close">&times;</button>
+    <div class="modal-content">
+      <div class="modal-image">
+        <img id="modalProductImage" src="" alt="">
+      </div>
+      <div class="modal-details">
+        <h3 id="modalProductName"></h3>
+        <p id="modalProductDesc"></p>
+        <span id="modalProductPrice" class="price"></span>
+        <div class="modal-actions">
+          <button class="add-to-cart" id="modalAddToCart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

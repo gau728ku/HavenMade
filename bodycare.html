@@ -42,7 +42,9 @@
         <input type="text" placeholder="Search products..." class="search-bar">
         <button class="search-btn"><i class="fa fa-search"></i></button>
         <a href="profile.html" class="icon"><i class="fa fa-user"></i></a>
-        <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i></a>
+        <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+        </a>
       </div>
     </nav>
   </header>
@@ -60,7 +62,7 @@
         </div>
       </div>
       <div class="hero-image">
-        <img src="images/facecare/face-banner.jpg" alt="Face Care Collection">
+        <img src="images/bodycare/body-banner.jpeg" alt="Body Care Collection">
       </div>
     </div>
   </section>
@@ -73,27 +75,24 @@
       <div class="product-card">
         <img src="images/bodycare/Lavender Calm.jpeg" alt="Lavender Calm">
         <h4>Lavender Calm</h4>
-        <p>Calming lavender for a soothing bath experience</p>
         <div class="price">₹299</div>
         <button class="add-to-cart" data-name="Lavender Calm" data-price="299" data-image="images/bodycare/Lavender Calm.jpeg">Add to Cart</button>
       </div>
 
       <!-- Rose Petal Bliss -->
-      <div class="product-card">
-        <img src="images/bodycare/Rose Bliss.jpeg" alt="Rose Petal Bliss">
-        <h4>Rose Petal Bliss</h4>
-        <p>Luxurious rose & shea butter for silky skin</p>
-        <div class="price">₹399</div>
-        <button class="add-to-cart" data-name="Rose Bliss" data-price="399" data-image="images/bodycare/Rose Bliss.jpeg">Add to Cart</button>
-      </div>
+      <div class="product-card" id="rose-bliss">
+      <img src="images/shop all/Rose Bliss.jpeg" alt="Rose Petal Bliss">
+      <h4>Rose Petal Bliss</h4>
+      <span class="price">₹399</span>
+      <button class="add-to-cart" data-name="Rose Petal Bliss" data-price="399" data-image="images/shop all/Rose Bliss.jpeg">Add to Cart</button>
+    </div>
 
       <!-- Lemon + Orange -->
       <div class="product-card">
-        <img src="images/bodycare/lemon orange.jpeg" alt="Lemon and Orange">
-        <h4>Lemon + Orange</h4>
-        <p>Energizing citrus bar for refreshed, glowing skin</p>
+        <img src="images/bodycare/lemon & orange.jpeg" alt="Lemon-Orange">
+        <h4>Lemon-Orange</h4>
         <div class="price">₹229</div>
-         <button class="add-to-cart" data-name="Lemon-Orange" data-price="229" data-image="images/bodycare/lemon orange.jpeg">Add to Cart</button>
+         <button class="add-to-cart" data-name="Lemon-Orange" data-price="229" data-image="images/bodycare/lemon & orange.jpeg">Add to Cart</button>
       </div>
 
     </div>
@@ -153,6 +152,52 @@
   </footer>
 
   <script type="module" src="script.js"></script>
+
+  <!-- Add this right before closing </body> tag in all pages -->
+<script>
+// Quick search fix
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', function() {
+            const term = searchInput.value.trim();
+            if (term) {
+                window.location.href = 'shop.html?search=' + term;
+            } else {
+                alert('Please enter a product name');
+            }
+        });
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+    }
+});
+</script>
+
+<!-- Product Quick View Modal -->
+<div id="productModal" class="modal hidden">
+  <div class="modal-panel product-modal">
+    <button class="close">&times;</button>
+    <div class="modal-content">
+      <div class="modal-image">
+        <img id="modalProductImage" src="" alt="">
+      </div>
+      <div class="modal-details">
+        <h3 id="modalProductName"></h3>
+        <p id="modalProductDesc"></p>
+        <span id="modalProductPrice" class="price"></span>
+        <div class="modal-actions">
+          <button class="add-to-cart" id="modalAddToCart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

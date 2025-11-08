@@ -52,7 +52,9 @@
   <a href="profile.html" class="icon"><i class="fa fa-user"></i></a>
 
   <!-- Cart -->
-  <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i></a>
+  <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i>
+  <span class="cart-count">0</span>
+  </a>
 </div>
 
   </nav>
@@ -176,6 +178,33 @@
 </footer>
    <!-- Scripts -->
   <script type="module" src="script.js"></script>
+
+<!-- Add this right before closing </body> tag in all pages -->
+<script>
+// Quick search fix
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', function() {
+            const term = searchInput.value.trim();
+            if (term) {
+                window.location.href = 'shop.html?search=' + term;
+            } else {
+                alert('Please enter a product name');
+            }
+        });
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+    }
+});
+</script>
+
 </body>
 </html>
 

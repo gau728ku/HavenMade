@@ -42,7 +42,9 @@
         <input type="text" placeholder="Search products..." class="search-bar">
         <button class="search-btn"><i class="fa fa-search"></i></button>
         <a href="profile.html" class="icon"><i class="fa fa-user"></i></a>
-        <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i></a>
+        <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+        </a>
       </div>
     </nav>
   </header>
@@ -59,7 +61,7 @@
         </div>
       </div>
       <div class="hero-image">
-        <img src="images/facecare/face-banner.jpg" alt="Face Care Collection">
+        <img src="images/facecare/face-banner.jpeg" alt="Face Care Collection">
       </div>
     </div>
   </section>
@@ -71,30 +73,27 @@
       <div class="grid">
 
         <!-- Product 1 -->
-        <div class="product-card" id="aloe-cucumber">
-          <img src="images/facecare/Aloe and Cucumber.jpeg" alt="Aloe & Cucumber">
-          <h4>Aloe & Cucumber</h4>
-          <p>Hydrating & soothing for sensitive skin</p>
-          <p><strong>₹349</strong></p>
-           <button class="add-to-cart" data-name="Aloe & Cucumber" data-price="349" data-image="images/facecare/Aloe and Cucumber.jpeg">Add to Cart</button>
+        <div class="product-card" id="Aloe & Cucumber">
+          <img src="images/facecare/Aloe & Cucumber.jpeg" alt="Aloe & Cucumber">
+           <h4>Aloe & Cucumber</h4> <!-- Exact name match is important -->
+           <span class="price">₹349</span>
+           <button class="add-to-cart" data-name="Aloe & Cucumber" data-price="349" data-image="images/facecare/Aloe & Cucumber.jpeg">Add to Cart</button>
         </div>
 
         <!-- Product 2 -->
-        <div class="product-card" id="charcoal-detox">
+        <div class="product-card" id="Charcoal Detox">
           <img src="images/facecare/Charcoal Detox.jpeg" alt="Charcoal Detox">
           <h4>Charcoal Detox</h4>
-          <p>Deep cleansing for clear, refreshed skin</p>
-          <p><strong>₹279</strong></p>
-           <button class="add-to-cart" data-name="Lavender Calm" data-price="279" data-image="images/facecare/Charcoal Detox.jpeg">Add to Cart</button>
+          <span class="price">₹279</span>
+           <button class="add-to-cart" data-name="Charcoal Detox" data-price="279" data-image="images/facecare/Charcoal Detox.jpeg">Add to Cart</button>
         </div>
 
         <!-- Product 3 -->
         <div class="product-card" id="honey-oats">
           <img src="images/facecare/honey & oats.jpeg" alt="Honey & Oats">
-          <h4>Honey & Oats</h4>
-          <p>Gently exfoliating & deeply moisturizing</p>
-          <p><strong>₹249</strong></p>
-           <button class="add-to-cart" data-name="Honey & Oats" data-price="249" data-image="images/facecare/honey & oats.jpeg">Add to Cart</button>
+          <h4>Honey-Oats</h4>
+          <span class="price">₹249</span>
+           <button class="add-to-cart" data-name="Honey-Oats" data-price="249" data-image="images/facecare/honey & oats.jpeg">Add to Cart</button>
         </div>
 
       </div>
@@ -155,5 +154,52 @@
   </footer>
 
   <script type="module" src="script.js"></script>
+
+<!-- Add this right before closing </body> tag in all pages -->
+<script>
+// Quick search fix
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', function() {
+            const term = searchInput.value.trim();
+            if (term) {
+                window.location.href = 'shop.html?search=' + term;
+            } else {
+                alert('Please enter a product name');
+            }
+        });
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+    }
+});
+</script>
+
+<!-- Product Quick View Modal -->
+<div id="productModal" class="modal hidden">
+  <div class="modal-panel product-modal">
+    <button class="close">&times;</button>
+    <div class="modal-content">
+      <div class="modal-image">
+        <img id="modalProductImage" src="" alt="">
+      </div>
+      <div class="modal-details">
+        <h3 id="modalProductName"></h3>
+        <p id="modalProductDesc"></p>
+        <span id="modalProductPrice" class="price"></span>
+        <div class="modal-actions">
+          <button class="add-to-cart" id="modalAddToCart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
