@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Profile | HavenMade</title>
-  <!-- Google Fonts -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service | Havenmade</title>
+   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
@@ -16,8 +16,7 @@
 
 </head>
 <body>
-  <!-- Header -->
-  <header class="main-header">
+ <header class="main-header">
   <div class="top-banner">
     ✨ Free Shipping on Orders Over ₹999 + Free Gift with Every Purchase 🎁
   </div>
@@ -35,7 +34,6 @@
     </a>
 
   </div>
-
 
 
      <!-- Mobile Menu Toggle Button -->
@@ -74,42 +72,47 @@
   </nav>
 </header>
 
-  <main class="profile-container">
+  <!-- Terms Section -->
+   <main>
+  <section class="policy-section fade-in-up">
+    <div class="policy-container">
+      <h1>Terms of Service</h1>
+      <p>Welcome to Havenmade! These Terms of Service govern your use of our website and the purchase of our products. By accessing or using our website, you agree to these terms.</p>
 
-    <!-- Login / Signup Section -->
-    <section id="auth-section">
-      <h3>Login or Create Account</h3>
-      <input type="email" id="auth-email" placeholder="Email" required />
-      <input type="password" id="auth-password" placeholder="Password" required />
-      <button id="login-btn">Login</button>
-      <button id="signup-btn">Sign Up</button>
-      <p id="auth-message"></p>
-    </section>
+      <h2>1. Use of Our Website</h2>
+      <p>By using our site, you agree to use it only for lawful purposes. You must not use our services to engage in any fraudulent or harmful activities.</p>
 
-    <!-- Profile Section -->
-    <section id="profile-section" style="display:none;">
-      <h3>Welcome, <span id="user-email"></span></h3>
+      <h2>2. Product Information</h2>
+      <p>We make every effort to ensure that product details, images, and descriptions are accurate. However, minor variations may occur due to natural ingredients and handmade processes.</p>
 
-      <label>Name</label>
-      <input type="text" id="profile-name" placeholder="Enter your name" />
+      <h2>3. Orders & Payments</h2>
+      <p>All prices are listed in INR and include applicable taxes. Payments are securely processed through third-party gateways like Razorpay or Shiprocket. We reserve the right to cancel or refuse any order in case of payment issues or suspicious activity.</p>
 
-      <label>Address</label>
-      <textarea id="profile-address" placeholder="Enter your delivery address"></textarea>
+      <h2>4. Shipping & Delivery</h2>
+      <p>We deliver across India through trusted courier partners. Estimated delivery times may vary based on location, and delays may occur due to unforeseen circumstances.</p>
 
-      <button id="save-profile">Save</button>
-      <button id="logout-btn">Logout</button>
+      <h2>5. Returns & Refunds</h2>
+      <p>We accept returns only for damaged, defective, or incorrect items. Please refer to our <a href="shipping & returns.html">Shipping & Returns</a> page for complete details.</p>
 
-      <h4>Your Orders</h4>
-      <ul id="orders-list">
-        <li>No orders found</li>
-      </ul>
+      <h2>6. Intellectual Property</h2>
+      <p>All content, including images, text, and designs, are the property of Havenmade and protected by copyright laws. You may not copy, reproduce, or distribute them without written permission.</p>
 
-      <p id="profile-message"></p>
-    </section>
+      <h2>7. Limitation of Liability</h2>
+      <p>Havenmade shall not be held liable for any indirect or consequential damages arising from the use or inability to use our website or products.</p>
 
-  </main>
+      <h2>8. Updates to Terms</h2>
+      <p>We may revise these Terms of Service periodically. Continued use of our website after updates constitutes your agreement to the revised terms.</p>
 
-  
+      <h2>9. Contact Us</h2>
+      <p>If you have any questions about these Terms, please contact us at <a href="mailto:havenmadecare@gmail.com">havenmadecare@gmail.com</a>.</p>
+
+      <!-- Last Updated -->
+      <div class="last-updated">
+        <p><strong>Last Updated:</strong> November 5, 2025</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer Section -->
 <footer class="footer">
   <div class="footer-container">
@@ -165,11 +168,10 @@
   </div>
 </footer>
 
- <!-- Scripts -->
-
+  <!-- Scripts -->
   <script type="module" src="script.js"></script>
 
-<!-- Add this right before closing </body> tag in all pages -->
+  <!-- Add this right before closing </body> tag in all pages -->
 <script>
 // Quick search fix
 document.addEventListener('DOMContentLoaded', function() {
@@ -197,3 +199,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+

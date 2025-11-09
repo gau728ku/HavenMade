@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Profile | HavenMade</title>
-  <!-- Google Fonts -->
+  <title>Track Your Order — HavenMade</title>
+    <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
@@ -16,6 +16,7 @@
 
 </head>
 <body>
+
   <!-- Header -->
   <header class="main-header">
   <div class="top-banner">
@@ -74,42 +75,64 @@
   </nav>
 </header>
 
-  <main class="profile-container">
+    <h1>Track Your Order</h1>
+    <p>Enter your tracking ID to check your delivery status.</p>
+  </header>
 
-    <!-- Login / Signup Section -->
-    <section id="auth-section">
-      <h3>Login or Create Account</h3>
-      <input type="email" id="auth-email" placeholder="Email" required />
-      <input type="password" id="auth-password" placeholder="Password" required />
-      <button id="login-btn">Login</button>
-      <button id="signup-btn">Sign Up</button>
-      <p id="auth-message"></p>
-    </section>
+  <!-- Tracking Form -->
+  <section class="track-container">
+    <form id="trackForm">
+      <input type="text" id="trackingInput" placeholder="Enter Tracking ID or AWB" required />
+      <button type="submit">Track Order</button>
+    </form>
+    <p class="note">You’ll be redirected to Shiprocket’s tracking page.</p>
+  </section>
 
-    <!-- Profile Section -->
-    <section id="profile-section" style="display:none;">
-      <h3>Welcome, <span id="user-email"></span></h3>
+  <!-- Thank You + Products in One Row -->
+  <section class="thankyou-products">
+    <div class="thank-you-text">
+      <h2>Thank you for shopping with <span>HavenMade 💚</span></h2>
+      <p>We hope you enjoy your purchase.<br>
+      Meanwhile, explore our bestsellers.</p>
+    </div>
 
-      <label>Name</label>
-      <input type="text" id="profile-name" placeholder="Enter your name" />
+    <div class="product-slider">
+      <div class="product-track">
+      <div class="product-card">
+  <a href="shop.html#aloe-cucumber">
+    <img src="images/track order/Aloe & Cucumber.jpeg" alt="Aloe and Cucumber">
+    <h4>Aloe and Cucumber</h4>
+    <p>₹199</p>
+  </a>
+</div>
 
-      <label>Address</label>
-      <textarea id="profile-address" placeholder="Enter your delivery address"></textarea>
+<div class="product-card">
+  <a href="shop.html#honey-oats">
+    <img src="images/track order/honey & oats.jpeg" alt="Honey & Oats">
+    <h4>Honey & Oats</h4>
+    <p>₹249</p>
+  </a>
+</div>
 
-      <button id="save-profile">Save</button>
-      <button id="logout-btn">Logout</button>
+<div class="product-card">
+  <a href="shop.html#lemon-orange">
+    <img src="images/track order/lemon & orange.jpeg" alt="Lemon+Orange">
+    <h4>Lemon+Orange</h4>
+    <p>₹229</p>
+  </a>
+</div>
 
-      <h4>Your Orders</h4>
-      <ul id="orders-list">
-        <li>No orders found</li>
-      </ul>
+<div class="product-card">
+  <a href="shop.html#rose-bliss">
+    <img src="images/track order/Rose Bliss.jpg" alt="Rose Bliss">
+    <h4>Rose Bliss</h4>
+    <p>₹199</p>
+  </a>
+</div>
 
-      <p id="profile-message"></p>
-    </section>
 
-  </main>
+  </section>
 
-  
   <!-- Footer Section -->
 <footer class="footer">
   <div class="footer-container">
@@ -165,8 +188,8 @@
   </div>
 </footer>
 
- <!-- Scripts -->
 
+<!-- Scripts -->
   <script type="module" src="script.js"></script>
 
 <!-- Add this right before closing </body> tag in all pages -->
@@ -197,3 +220,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
+

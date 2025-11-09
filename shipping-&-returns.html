@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Body Care — HavenMade</title>
+  <title>Shipping & Returns | HavenMade</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -14,10 +14,10 @@
   <link rel="icon" href="images/Logo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-</head>
+
 <body>
 
-  <!-- HEADER -->
+  <!-- Header -->
   <header class="main-header">
     <div class="top-banner">✨ Free Shipping on Orders Over ₹999 + Free Gift with Every Purchase 🎁</div>
     <nav class="navbar">
@@ -33,6 +33,8 @@
     </a>
 
   </div>
+
+
 
        <!-- Mobile Menu Toggle Button -->
   <div class="menu-toggle" id="mobile-menu">
@@ -51,67 +53,82 @@
     </ul>
   </div>
 
+
       <div class="nav-right">
-        <input type="text" placeholder="Search products..." class="search-bar">
-        <button class="search-btn"><i class="fa fa-search"></i></button>
-        <a href="profile.html" class="icon"><i class="fa fa-user"></i></a>
-        <a href="cart.html" class="icon"><i class="fa fa-shopping-cart"></i>
+        <input type="text" id="searchInput" placeholder="Search products..." class="search-bar">
+        <button id="searchBtn" class="search-btn"><i class="fa fa-search"></i></button>
+        <a href="profile.html" class="icon"><i class="fa-solid fa-user"></i></a>
+        <a href="cart.html" class="icon"><i class="fa-solid fa-cart-shopping"></i>
         <span class="cart-count">0</span>
         </a>
       </div>
     </nav>
   </header>
 
-
-  <!-- HERO SECTION -->
-  <section class="hero-section" style="background-color:#f9f6f1;">
+  <!-- Hero -->
+  <section class="page-hero">
     <div class="hero-content">
-      <div class="hero-text">
-        <span class="badge">Gentle • Nourishing • Natural</span>
-        <h1>Our Body Care Bars Collection</h1>
-        <p>Nourishing soaps crafted to care for your skin naturally.</p>
-        <div class="hero-buttons">
-          <a href="shop.html" class="btn-primary">Shop All</a>
-        </div>
-      </div>
-      <div class="hero-image">
-        <img src="images/bodycare/body-banner.jpeg" alt="Body Care Collection">
-      </div>
+      <h1>Shipping & Returns</h1>
+      <p>We’re committed to delivering your HavenMade products safely and quickly.</p>
     </div>
   </section>
 
-  <!-- Body Care Products -->
-  <section class="section wrap">
-    <div class="grid">
-      
-      <!-- Lavender Calm -->
-      <div class="product-card">
-        <img src="images/bodycare/Lavender Calm.jpeg" alt="Lavender Calm">
-        <h4>Lavender Calm</h4>
-        <div class="price">₹299</div>
-        <button class="add-to-cart" data-name="Lavender Calm" data-price="299" data-image="images/bodycare/Lavender Calm.jpeg">Add to Cart</button>
-      </div>
+  <!-- Shipping Section -->
+  <section class="info-section container">
+    <div class="info-block">
+      <h2><i class="fa-solid fa-seedling"></i> Shipping Policy</h2>
+      <p>All our products are handcrafted and packed with care. Orders are typically processed within <strong>1–3 business days</strong> after receiving payment confirmation.</p>
 
-      <!-- Rose Petal Bliss -->
-      <div class="product-card" id="rose-bliss">
-      <img src="images/shop all/Rose Bliss.jpeg" alt="Rose Petal Bliss">
-      <h4>Rose Petal Bliss</h4>
-      <span class="price">₹399</span>
-      <button class="add-to-cart" data-name="Rose Petal Bliss" data-price="399" data-image="images/shop all/Rose Bliss.jpeg">Add to Cart</button>
+      <ul>
+        <li>Delivery within India usually takes <strong>3–7 business days</strong>.</li>
+        <li>Shipping is free on all orders above ₹499.</li>
+        <li>Once dispatched, you’ll receive a tracking link via email or WhatsApp.</li>
+      </ul>
+
+      <p class="note"><em>Please note:</em> Delays may occur during holidays or due to courier issues beyond our control.</p>
     </div>
 
-      <!-- Lemon + Orange -->
-      <div class="product-card">
-        <img src="images/bodycare/lemon & orange.jpeg" alt="Lemon-Orange">
-        <h4>Lemon-Orange</h4>
-        <div class="price">₹399</div>
-         <button class="add-to-cart" data-name="Lemon-Orange" data-price="399" data-image="images/bodycare/lemon & orange.jpeg">Add to Cart</button>
+    <div class="info-block">
+      <h2><i class="fa-solid fa-bowl-food"></i> Order Processing</h2>
+      <p>Since each bar is made in small batches, slight variations in color, scent, or shape are natural — and a sign of authentic craftsmanship.</p>
+    </div>
+
+    <div class="info-block">
+      <h2><i class="fa-solid fa-truck"></i> Delivery Timeline</h2>
+
+      <div class="timeline-step">
+        <h3><i class="fa-solid fa-clipboard-check"></i> Order Placed</h3>
+        <p>Once your order is confirmed, we start preparing your products with care.</p>
       </div>
 
+      <div class="timeline-step">
+        <h3><i class="fa-solid fa-box"></i> Packed & Dispatched</h3>
+        <p>Your items are handmade, checked, and shipped within <strong>1–3 business days</strong>.</p>
+      </div>
+
+      <div class="timeline-step">
+        <h3><i class="fa-solid fa-envelope-open-text"></i> Delivered</h3>
+        <p>You’ll receive tracking updates via email or WhatsApp. Delivery usually takes <strong>3–7 business days</strong>.</p>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h2><i class="fa-solid fa-rotate-left"></i> Return & Exchange Policy</h2>
+      <p>Due to hygiene and the nature of our handmade products, we do not accept returns or exchanges once opened or used.</p>
+      <p>However, if your order arrives damaged or incorrect, please contact us at <a href="mailto:havenmadecare@gmail.com">havenmadecare@gmail.com</a> within 48 hours of delivery — we’ll be happy to help.</p>
     </div>
   </section>
 
- <!-- FOOTER -->
+  <!-- CTA -->
+  <section class="cta container">
+    <div class="cta-box">
+      <h3>Need Help?</h3>
+      <p>Have questions about your order? Reach out to our care team anytime.</p>
+      <a href="contact.html" class="btn-primary">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-brand">
@@ -119,9 +136,7 @@
         <p>Handcrafted natural soaps made with love and care for your skin and the planet.</p>
         <div class="footer-social">
           <a href="#"><img src="images/home/instagram_icon.jpg" alt="Instagram"></a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=havenmadecare@gmail.com" target="_blank">
-            <img src="images/home/mail_icon.png" alt="Email">
-          </a>
+          <a href="mailto:havenmadecare@gmail.com"><img src="images/home/mail_icon.png" alt="Email"></a>
         </div>
       </div>
 
@@ -129,7 +144,7 @@
         <div>
           <h3>Shop</h3>
           <ul>
-            <li><a href="shop.html">Shop All</a></li>
+            <li><a href="shop.html">All Products</a></li>
             <li><a href="facecare.html">Face Care</a></li>
             <li><a href="bodycare.html">Body Care</a></li>
             <li><a href="giftsets.html">Gift Sets</a></li>
@@ -163,7 +178,7 @@
       <p>© 2025 HavenMade. All rights reserved. Made with <span>♥</span> for your skin.</p>
     </div>
   </footer>
-
+<!-- Scripts -->
   <script type="module" src="script.js"></script>
 
   <!-- Add this right before closing </body> tag in all pages -->
@@ -191,26 +206,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-
-<!-- Product Quick View Modal -->
-<div id="productModal" class="modal hidden">
-  <div class="modal-panel product-modal">
-    <button class="close">&times;</button>
-    <div class="modal-content">
-      <div class="modal-image">
-        <img id="modalProductImage" src="" alt="">
-      </div>
-      <div class="modal-details">
-        <h3 id="modalProductName"></h3>
-        <p id="modalProductDesc"></p>
-        <span id="modalProductPrice" class="price"></span>
-        <div class="modal-actions">
-          <button class="add-to-cart" id="modalAddToCart">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>

@@ -2890,4 +2890,47 @@ button:hover {
   letter-spacing: 2px;
 }
 
+@media (max-width: 768px) {
+  .sourcing {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .sourcing-left,
+  .sourcing-right {
+    width: 100%;
+  }
+
+  .sourcing-right img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* Fix footer overflow on mobile */
+.footer-links, .footer-columns {
+  display: flex;
+  flex-wrap: wrap; /* Allow columns to go below each other */
+  gap: 20px;
+}
+
+.footer-column {
+  flex: 1 1 100%;  /* Each column takes full width on mobile */
+  text-align: center; 
+}
+
+/* Only for larger screens restore normal layout */
+@media (min-width: 768px) {
+  .footer-column {
+    flex: 1;               /* side-by-side columns again */
+    text-align: left;
+  }
+}
+
+
 
