@@ -668,7 +668,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Get description from our data
       const description = productDescriptions[productName] || 'Product description not available';
-      document.getElementById('modalProductDesc').textContent = description;
+      document.getElementById('modalProductDesc').innerHTML = description;
       
       // Set up modal add to cart button
       document.getElementById('modalAddToCart').onclick = function() {
@@ -963,6 +963,7 @@ function calculateSubtotal(cartItems) {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 
 }
+
 
 
 
