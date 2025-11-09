@@ -634,10 +634,10 @@ const productDescriptions = {
   "Rose Petal Bliss": "Indulge in luxury with rose petals and shea butter. Leaves skin feeling soft, nourished, and beautifully fragrant.<br><strong>Net Quantity:</strong> 100g",
   "Honey-Oats": "Gentle exfoliation meets deep moisturization. Honey and oats work together to soothe and soften even the driest skin.<br><strong>Net Quantity:</strong> 100g",
   "Lemon-Orange": "Awaken your senses with the zesty duo of lemon and orange. This citrus burst provides a refreshing start to your day while naturally brightening your skin.<br><strong>Net Quantity:</strong> 100g",
-  "Glow & Calm Duo": "Indulge in the perfect balance of radiance and relaxation. This exquisite pairing combines our bestselling Rose Bliss for luminous, hydrated skin with the gentle exfoliation of Honey & Oats. Thoughtfully presented in an eco-friendly kraft box that's as beautiful as it is sustainable - perfect for gifting or treating yourself to everyday luxury.",
-  "Refresh Duo": "A vibrant awakening for your senses and skin. Energize your routine with this zesty combination of Lemon + Orange for brightening, Aloe Cucumber for soothing hydration, and Mint Charcoal for deep purification. Three distinct experiences that work in harmony to refresh, revive, and rejuvenate your skin from head to toe.",
-  "Luxe Spa Set": "Transform your bathroom into a personal sanctuary. Experience ultimate relaxation with our calming Lavender Calm, nourishing Honey & Oats, and complete the ritual with our elegant Wooden Soap Dish. This curated collection turns everyday bathing into a luxurious spa-like retreat, promoting mindfulness and self-care with every use.",
-  "Celebration Hamper": "The ultimate gift for special moments. This generous collection features 4 assorted soaps carefully selected for variety and luxury, accompanied by a handwritten greeting card and stylish jute pouch. Perfect for birthdays, anniversaries, holidays, or simply celebrating life's beautiful moments with someone special."
+  "Glow & Calm Duo": "Indulge in the perfect balance of radiance and relaxation. This exquisite pairing combines our bestselling Rose Bliss for luminous, hydrated skin with the gentle exfoliation of Honey & Oats. Thoughtfully presented in an eco-friendly kraft box that's as beautiful as it is sustainable - perfect for gifting or treating yourself to everyday luxury.<br><strong>Net Quantity:</strong> 100g+100g=200g",
+  "Refresh Duo": "A vibrant awakening for your senses and skin. Energize your routine with this zesty combination of Lemon + Orange for brightening, Aloe Cucumber for soothing hydration, and Mint Charcoal for deep purification. Three distinct experiences that work in harmony to refresh, revive, and rejuvenate your skin from head to toe.<br><strong>Net Quantity:</strong> 100g+100g=200g",
+  "Luxe Spa Set": "Transform your bathroom into a personal sanctuary. Experience ultimate relaxation with our calming Lavender Calm, nourishing Honey & Oats, and complete the ritual with our elegant Wooden Soap Dish. This curated collection turns everyday bathing into a luxurious spa-like retreat, promoting mindfulness and self-care with every use.<br><strong>Net Quantity:</strong> 100g+100g=200g",
+  "Celebration Hamper": "The ultimate gift for special moments. This generous collection features 4 assorted soaps carefully selected for variety and luxury, accompanied by a handwritten greeting card and stylish jute pouch. Perfect for birthdays, anniversaries, holidays, or simply celebrating life's beautiful moments with someone special.<br><strong>Net Quantity:</strong> 100g+100g+100g+100g=400g"
 
 };
 
@@ -963,6 +963,7 @@ function calculateSubtotal(cartItems) {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 
 }
+
 
 
 
