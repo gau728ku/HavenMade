@@ -628,7 +628,7 @@ window.debugCart = debugCart;
 
 // Product descriptions data
 const productDescriptions = {
-  "Lavender Calm": "Soothe your senses with our calming lavender blend. Perfect for evening relaxation and gentle enough for sensitive skin." "Net Quantity: 100g",
+  "Lavender Calm": "Soothe your senses with our calming lavender blend. Perfect for evening relaxation and gentle enough for sensitive skin. Net Quantity: 100g",
   "Aloe & Cucumber": "Refresh and hydrate with the cooling duo of aloe vera and cucumber. Ideal for hot days and post-workout freshness.",
   "Charcoal Detox": "Deep cleanse with activated charcoal that draws out impurities. Great for oily and combination skin types.",
   "Rose Petal Bliss": "Indulge in luxury with rose petals and shea butter. Leaves skin feeling soft, nourished, and beautifully fragrant.",
@@ -963,3 +963,4 @@ function calculateSubtotal(cartItems) {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 
 }
+
