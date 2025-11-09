@@ -641,6 +641,7 @@ const productDescriptions = {
 
 };
 
+
 // Product Quick View functionality - SIMPLE FIX
 document.addEventListener('DOMContentLoaded', function() {
   const productModal = document.getElementById('productModal');
@@ -961,11 +962,67 @@ function getShippingInfo() {
 
 function calculateSubtotal(cartItems) {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-
 }
 
+// Mobile Menu Toggle - SIMPLE AND RELIABLE
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuToggle = document.getElementById('mobile-menu');
+  const navMenu = document.querySelector('.nav-center');
+  const body = document.body;
 
+  // Create overlay element
+  const overlay = document.createElement('div');
+  overlay.className = 'nav-overlay';
+  document.body.appendChild(overlay);
 
+  if (mobileMenuToggle && navMenu) {
+    console.log('📱 Mobile menu initialized');
+    
+    mobileMenuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      navMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+      
+      // Change icon
+      const icon = mobileMenuToggle.querySelector('i');
+      if (navMenu.classList.contains('active')) {
+        icon.className = 'fas fa-times';
+      } else {
+        icon.className = 'fas fa-bars';
+      }
+    });
 
+    // Close menu when clicking overlay
+    overlay.addEventListener('click', function() {
+      navMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      body.style.overflow = '';
+      mobileMenuToggle.querySelector('i').className = 'fas fa-bars';
+    });
 
+    // Close menu when clicking on a link (optional)
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        body.style.overflow = '';
+        mobileMenuToggle.querySelector('i').className = 'fas fa-bars';
+      });
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        body.style.overflow = '';
+        mobileMenuToggle.querySelector('i').className = 'fas fa-bars';
+      }
+    });
+  } else {
+    console.log('❌ Mobile menu elements not found');
+  }
+});
 
