@@ -628,12 +628,12 @@ window.debugCart = debugCart;
 
 // Product descriptions data
 const productDescriptions = {
-  "Lavender Calm": "Soothe your senses with our calming lavender blend. Perfect for evening relaxation and gentle enough for sensitive skin. Net Quantity: 100g",
-  "Aloe & Cucumber": "Refresh and hydrate with the cooling duo of aloe vera and cucumber. Ideal for hot days and post-workout freshness.",
-  "Charcoal Detox": "Deep cleanse with activated charcoal that draws out impurities. Great for oily and combination skin types.",
-  "Rose Petal Bliss": "Indulge in luxury with rose petals and shea butter. Leaves skin feeling soft, nourished, and beautifully fragrant.",
-  "Honey-Oats": "Gentle exfoliation meets deep moisturization. Honey and oats work together to soothe and soften even the driest skin.",
-  "Lemon-Orange": "Awaken your senses with the zesty duo of lemon and orange. This citrus burst provides a refreshing start to your day while naturally brightening your skin.",
+  "Lavender Calm": "Soothe your senses with our calming lavender blend. Perfect for evening relaxation and gentle enough for sensitive skin.<br><strong>Net Quantity:</strong> 100g",
+  "Aloe & Cucumber": "Refresh and hydrate with the cooling duo of aloe vera and cucumber. Ideal for hot days and post-workout freshness.<br><strong>Net Quantity:</strong> 100g",
+  "Charcoal Detox": "Deep cleanse with activated charcoal that draws out impurities. Great for oily and combination skin types.<br><strong>Net Quantity:</strong> 100g",
+  "Rose Petal Bliss": "Indulge in luxury with rose petals and shea butter. Leaves skin feeling soft, nourished, and beautifully fragrant.<br><strong>Net Quantity:</strong> 100g",
+  "Honey-Oats": "Gentle exfoliation meets deep moisturization. Honey and oats work together to soothe and soften even the driest skin.<br><strong>Net Quantity:</strong> 100g",
+  "Lemon-Orange": "Awaken your senses with the zesty duo of lemon and orange. This citrus burst provides a refreshing start to your day while naturally brightening your skin.<br><strong>Net Quantity:</strong> 100g",
   "Glow & Calm Duo": "Indulge in the perfect balance of radiance and relaxation. This exquisite pairing combines our bestselling Rose Bliss for luminous, hydrated skin with the gentle exfoliation of Honey & Oats. Thoughtfully presented in an eco-friendly kraft box that's as beautiful as it is sustainable - perfect for gifting or treating yourself to everyday luxury.",
   "Refresh Duo": "A vibrant awakening for your senses and skin. Energize your routine with this zesty combination of Lemon + Orange for brightening, Aloe Cucumber for soothing hydration, and Mint Charcoal for deep purification. Three distinct experiences that work in harmony to refresh, revive, and rejuvenate your skin from head to toe.",
   "Luxe Spa Set": "Transform your bathroom into a personal sanctuary. Experience ultimate relaxation with our calming Lavender Calm, nourishing Honey & Oats, and complete the ritual with our elegant Wooden Soap Dish. This curated collection turns everyday bathing into a luxurious spa-like retreat, promoting mindfulness and self-care with every use.",
@@ -963,4 +963,5 @@ function calculateSubtotal(cartItems) {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 
 }
+
 
