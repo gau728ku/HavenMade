@@ -1,84 +1,96 @@
-document.getElementById("razorpay-checkout-btn").addEventListener("click", function (e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const paymentBtn = document.getElementById("proceed-payment-btn");
 
-    // Collect delivery details
-    const fullName = document.getElementById("fullName").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const address1 = document.getElementById("address1").value.trim();
-    const city = document.getElementById("city").value.trim();
-    const state = document.getElementById("state").value.trim();
-    const pincode = document.getElementById("pincode").value.trim();
+  paymentBtn.addEventListener("click", function () {
+    let name = document.getElementById("full-name").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let address1 = document.getElementById("address1").value.trim();
+    let address2 = document.getElementById("address2").value.trim();
+    let city = document.getElementById("city").value.trim();
+    let state = document.getElementById("state").value.trim();
+    let pincode = document.getElementById("pincode").value.trim();
 
-    // Validation
-    if (!fullName || !phone || !email || !address1 || !city || !state || !pincode) {
-        alert("Please fill all required details.");
-        return;
+    // Validate fields
+    if (!name || !phone || !email || !address1 || !city || !state || !pincode) {
+      alert("Please fill all required delivery details.");
+      return;
     }
 
-    if (phone.length !== 10) {
-        alert("Invalid phone number.");
-        return;
-    }
-
-    if (pincode.length !== 6) {
-        alert("Invalid pincode.");
-        return;
-    }
-
-    // Save delivery info
-    const deliveryData = {
-        fullName,
-        phone,
-        email,
-        address1,
-        address2: document.getElementById("address2").value.trim(),
-        city,
-        state,
-        pincode
+    // Save Delivery Details
+    let deliveryInfo = {
+      name,
+      phone,
+      email,
+      address1,
+      address2,
+      city,
+      state,
+      pincode
     };
-    localStorage.setItem("deliveryInfo", JSON.stringify(deliveryData));
 
-    // Load cart
+    localStorage.setItem("deliveryDetails", JSON.stringify(deliveryInfo));
+
+    // Get Cart + Total
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let total = 1;   // <-- test with ₹1
-    
-    // Razorpay Options
+    let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    // RAZORPAY OPTIONS
     var options = {
-        "key": "rzp_live_RigY3xdQPExOrR",
-        "amount": total * 100,
-        "currency": "INR",
-        "name": "HavenMade",
-        "description": "Order Payment",
-        "image": "images/home/Logo.png",
+      "key": "rzp_live_RigY3xdQPExOrR",  // <-- your live Razorpay key
+      "amount": total * 100,
+      "currency": "INR",
+      "name": "HavenMade",
+      "description": "Order Payment",
+      "image": "images/home/Logo.png",
 
-        "prefill": {
-            "name": fullName,
-            "email": email,
-            "contact": phone
-        },
+      "handler": function (response) {
+        
+        let orderData = {
+          payment_id: response.razorpay_payment_id,
+          amount: total,
+          cart: cart,
+          delivery: deliveryInfo
+        };
 
-        "theme": { "color": "#6D9773" },
+        localStorage.setItem("lastOrder", JSON.stringify(orderData));
 
-        "handler": function (response) {
+        // -------- EMAIL ORDER TO YOU --------
+        fetch("https://formspree.io/f/mwpwgeag", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            _subject: "🛒 New Order Received - HavenMade",
+            Name: deliveryInfo.name,
+            Phone: deliveryInfo.phone,
+            Email: deliveryInfo.email,
+            Address: `${deliveryInfo.address1}, ${deliveryInfo.address2}, ${deliveryInfo.city}, ${deliveryInfo.state} - ${deliveryInfo.pincode}`,
+            Payment_ID: response.razorpay_payment_id,
+            Total_Amount: total,
+            Items: cart.map(i => `${i.name} × ${i.quantity} — ₹${i.price}`).join("\n"),
+          })
+        });
 
-            // Save order data + delivery details
-            const orderData = {
-                payment_id: response.razorpay_payment_id,
-                amount: total,
-                cart: cart,
-                delivery: deliveryData
-            };
+        // Clear cart
+        localStorage.removeItem("cart");
 
-            localStorage.setItem("lastOrder", JSON.stringify(orderData));
+        // Redirect to thank you page
+        window.location.href = "thankyou.html";
+      },
 
-            localStorage.removeItem("cart");
-
-            // Redirect
-            window.location.href = "thankyou.html";
-        }
+      "prefill": {
+        "name": name,
+        "email": email,
+        "contact": phone
+      },
+      "theme": {
+        "color": "#6D9773"
+      }
     };
 
     var rzp = new Razorpay(options);
     rzp.open();
+  });
 });
