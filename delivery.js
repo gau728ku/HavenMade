@@ -45,7 +45,7 @@ document.getElementById("razorpay-checkout-btn").addEventListener("click", funct
 
     // Razorpay Options
     var options = {
-        "key": "rzp_test_RiHoS3p4X706cs",
+        "key": "rzp_live_RigY3xdQPExOrR",
         "amount": total * 100,
         "currency": "INR",
         "name": "HavenMade",
