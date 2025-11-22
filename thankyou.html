@@ -219,11 +219,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // 4. Fill Delivery Details
     // -------------------------------------------
     if (deliveryData) {
-        document.getElementById("customerName").textContent = deliveryData.name;
+        document.getElementById("customerName").textContent = deliveryData.fullName;
         document.getElementById("customerPhone").textContent = deliveryData.phone;
         document.getElementById("customerAddress").textContent =
-            `${deliveryData.address}, ${deliveryData.city}, ${deliveryData.state} - ${deliveryData.pincode}`;
-    }
+    `${deliveryData.address1}, ${deliveryData.address2}, ${deliveryData.city}, ${deliveryData.state} - ${deliveryData.pincode}`;
+
 
     // Clear everything after showing
     localStorage.removeItem("cart");
