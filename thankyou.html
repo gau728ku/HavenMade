@@ -185,33 +185,51 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const data = localStorage.getItem("checkoutData");
 
-  if (!data) {
-    console.log("No checkout data found");
-    return;
-  }
+    const orderData = JSON.parse(localStorage.getItem("lastOrder"));
 
-  const order = JSON.parse(data);
+    if (!orderData) {
+        console.error("No order data found.");
+        return;
+    }
 
-  // Fill order summary
-  document.getElementById("orderId").innerText = order.orderId;
-  document.getElementById("amountPaid").innerText = "₹" + order.amount;
-  document.getElementById("paymentStatus").innerText = order.paymentStatus;
+    // ------------------------------
+    // Fill Order Basic Info
+    // ------------------------------
+    document.getElementById("order-id").innerText = orderData.payment_id;
+    document.getElementById("amount-paid").innerText = "₹" + orderData.amount;
 
-  // Delivery details
-  document.getElementById("custName").innerText = order.deliveryInfo.fullName;
-  document.getElementById("custPhone").innerText = order.deliveryInfo.phone;
-  document.getElementById("custAddress").innerText = order.deliveryInfo.address;
+    // ------------------------------
+    // Fill Delivery Details
+    // ------------------------------
+    const d = orderData.delivery;
 
-  // Order item
-  if (order.cart.length > 0) {
-    document.getElementById("orderItem").innerText =
-      `${order.cart[0].name} x${order.cart[0].quantity}`;
-  }
+    document.getElementById("delivery-name").innerText = d.fullName;
+    document.getElementById("delivery-phone").innerText = d.phone;
+    document.getElementById("delivery-address").innerText =
+        `${d.address1}, ${d.address2 ? d.address2 + ", " : ""}${d.city}, ${d.state} - ${d.pincode}`;
+
+    // ------------------------------
+    // Fill Order Items
+    // ------------------------------
+    let itemsHTML = "";
+    orderData.cart.forEach(item => {
+        itemsHTML += `
+            <div style="margin-bottom:6px;">
+                ${item.name} × ${item.quantity} — ₹${item.price * item.quantity}
+            </div>
+        `;
+    });
+
+    document.getElementById("order-items").innerHTML = itemsHTML;
+
+    // ------------------------------
+    // (Optional) Clear data after load
+    // ------------------------------
+    localStorage.removeItem("deliveryInfo");
+    localStorage.removeItem("cart");
 });
 </script>
-
     
 </body>
 </html>
