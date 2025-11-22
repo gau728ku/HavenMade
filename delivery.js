@@ -72,6 +72,24 @@ document.getElementById("razorpay-checkout-btn").addEventListener("click", funct
 
             localStorage.setItem("lastOrder", JSON.stringify(orderData));
 
+// -------- EMAIL ORDER TO YOU --------
+        fetch("https://formspree.io/f/mwpwgeag", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            _subject: "🛒 New Order Received - HavenMade",
+            Name: deliveryInfo.name,
+            Phone: deliveryInfo.phone,
+            Email: deliveryInfo.email,
+            Address: `${deliveryInfo.address1}, ${deliveryInfo.address2}, ${deliveryInfo.city}, ${deliveryInfo.state} - ${deliveryInfo.pincode}`,
+            Payment_ID: response.razorpay_payment_id,
+            Total_Amount: total,
+            Items: cart.map(i => `${i.name} × ${i.quantity} — ₹${i.price}`).join("\n"),
+          })
+        });
+            
             localStorage.removeItem("cart");
 
             // Redirect
