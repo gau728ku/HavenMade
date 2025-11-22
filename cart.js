@@ -467,7 +467,7 @@ document.addEventListener("click", async (event) => {
 
   // Razorpay options
   var options = {
-    "key": "rzp_test_RiHoS3p4X706cs",    // <-- your Razorpay test key
+    "key": "rzp_live_RigY3xdQPExOrR",    // <-- your Razorpay test key
     "amount": total * 100,               // convert to paisa
     "currency": "INR",
     "name": "HavenMade",
