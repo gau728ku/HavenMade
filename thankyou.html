@@ -67,8 +67,8 @@
                     </p>
                     
                     <div class="order-info" style="text-align: left; background: #f9f9f9; padding: 20px; border-radius: 8px;">
-                        <p><strong>Order ID:</strong> <span id="orderId">Loading...</span></p>
-                        <p><strong>Amount Paid:</strong> <span id="orderAmount">Loading...</span></p>
+                        <p><strong>Order ID:</strong> <span id="order-id"></span></p>
+                        <p><strong>Amount Paid:</strong> <span id="amount-paid"></span></p>
                         <p><strong>Payment Status:</strong> <span style="color: #4b7c3b;">✅ Successful</span></p>
                         <p><strong>Estimated Delivery:</strong> 3-5 business days</p>
                     </div>
@@ -82,9 +82,10 @@
 <!-- Delivery Info -->
 <div style="background:#fff; padding:20px; border-radius:10px; margin-top:20px; text-align:left;">
     <h3 style="margin-bottom:10px; color:#2f4b36;">Delivery Details</h3>
-    <p><strong>Name:</strong> <span id="customerName"></span></p>
-    <p><strong>Phone:</strong> <span id="customerPhone"></span></p>
-    <p><strong>Address:</strong> <span id="customerAddress"></span></p>
+    <p><strong>Name:</strong> <span id="delivery-name"></span></p>
+    <p><strong>Phone:</strong> <span id="delivery-phone"></span></p>
+    <p><strong>Address:</strong> <span id="delivery-address"></span></p>
+    <p><strong>Order Item:</strong> <div id="order-items"></div></p>
 </div>
 
 
@@ -231,5 +232,40 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const data = JSON.parse(localStorage.getItem("checkoutData"));
+
+    if (!data) {
+        console.error("No checkout data found");
+        return;
+    }
+
+    // Fill Order Summary
+    document.getElementById("order-id").innerText = data.payment_id;
+    document.getElementById("amount-paid").innerText = "₹" + data.amount;
+    document.getElementById("payment-status").innerText = "Successful";
+
+    // Delivery details
+    document.getElementById("delivery-name").innerText = data.name;
+    document.getElementById("delivery-phone").innerText = data.phone;
+    document.getElementById("delivery-address").innerText =
+        `${data.address1}, ${data.address2 ? data.address2 + ", " : ""}${data.city}, ${data.state} - ${data.pincode}`;
+
+    // List cart items
+    let itemsHTML = "";
+    data.cart.forEach(item => {
+        itemsHTML += `
+            <div style="margin-bottom:6px;">
+                ${item.name} × ${item.quantity} — ₹${item.price * item.quantity}
+            </div>
+        `;
+    });
+
+    document.getElementById("order-items").innerHTML = itemsHTML;
+});
+</script>
+
+    
 </body>
 </html>
