@@ -15,6 +15,8 @@
   <link rel="icon" href="images/Logo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+ <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 </head>
 <body class="cart-page">
 
@@ -273,10 +275,7 @@
   </div>
 </footer>
 
-  <!-- Scripts -->
-<script src="script.js"></script>
-<script src="cart.js"></script>
-
+ 
 <!-- Add this right before closing </body> tag in all pages -->
 <script>
 // Quick search fix
@@ -303,44 +302,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
   
-<script>
-// Simple Checkout Function
-function proceedToShiprocketCheckout() {
-    console.log('🛒 Checkout started...');
-    
-    // Get cart items
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    
-    // Check if cart is empty
-    if (cartItems.length === 0) {
-        alert('❌ Your cart is empty! Please add some products first.');
-        return;
-    }
-
-    // Calculate total
-    const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-    const shipping = 0; // Free shipping
-    const total = subtotal + shipping;
-
-    console.log('💰 Order total:', total);
-    
-    // Show success message and redirect
-    alert(`✅ Order validated!\n\nOrder Total: ₹${total}\n\nRedirecting to payment...`);
-    
-    // Redirect to thank you page
-    window.location.href = `thankyou.html?order_id=HM${Date.now()}&amount=${total}`;
-}
-
-// Add event listener when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    const checkoutBtn = document.querySelector('.checkout-btn');
-    
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', proceedToShiprocketCheckout);
-        console.log('✅ Checkout button ready');
-    }
-});
-</script>
 
 <!-- Product Quick View Modal -->
 <div id="productModal" class="modal hidden">
@@ -362,5 +323,10 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
+ <!-- Scripts -->
+<script src="script.js"></script>
+<script src="cart.js"></script>
+
+  
 </body>
 </html>
