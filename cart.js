@@ -450,11 +450,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ======================
-// RAZORPAY CHECKOUT
+// GO TO DELIVERY PAGE
 // ======================
 
-document.addEventListener("click", async (event) => {
-  if (!event.target.matches("#razorpay-checkout-btn")) return;
+document.addEventListener("click", (event) => {
+  if (!event.target.matches("#go-to-delivery")) return;
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   if (cart.length === 0) {
@@ -462,47 +462,6 @@ document.addEventListener("click", async (event) => {
     return;
   }
 
-  // Calculate total
-  let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-  // Razorpay options
-  var options = {
-    "key": "rzp_live_RigY3xdQPExOrR",    // <-- your Razorpay test key
-    "amount": total * 100,               // convert to paisa
-    "currency": "INR",
-    "name": "HavenMade",
-    "description": "Order Payment",
-    "image": "images/home/Logo.png",
-
-    // Prefill customer data (optional)
-    "prefill": {
-      "name": "",
-      "email": "",
-      "contact": ""
-    },
-
-    // Theme color
-    "theme": {
-      "color": "#6D9773"
-    },
-
-    // SUCCESS
-    "handler": function (response) {
-      // Save order to localStorage for thank you page
-      localStorage.setItem("lastOrder", JSON.stringify({
-        payment_id: response.razorpay_payment_id,
-        amount: total,
-        cart: cart
-      }));
-
-      // Clear cart
-      localStorage.removeItem("cart");
-
-      // Redirect
-      window.location.href = "thankyou.html";
-    }
-  };
-
-  var rzp = new Razorpay(options);
-  rzp.open();
+  // redirect to delivery page
+  window.location.href = "delivery.html";
 });
