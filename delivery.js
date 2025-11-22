@@ -1,63 +1,84 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.getElementById("razorpay-checkout-btn").addEventListener("click", function (e) {
+    e.preventDefault();
 
-    const payBtn = document.getElementById("proceedToPay");
+    // Collect delivery details
+    const fullName = document.getElementById("fullName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const address1 = document.getElementById("address1").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const state = document.getElementById("state").value.trim();
+    const pincode = document.getElementById("pincode").value.trim();
 
-    if (!payBtn) {
-        console.error("❌ Button not found: proceedToPay");
+    // Validation
+    if (!fullName || !phone || !email || !address1 || !city || !state || !pincode) {
+        alert("Please fill all required details.");
         return;
     }
 
-    payBtn.addEventListener("click", function () {
+    if (phone.length !== 10) {
+        alert("Invalid phone number.");
+        return;
+    }
 
-        // Collect form values
-        let name = document.getElementById("fullName").value.trim();
-        let phone = document.getElementById("phoneNumber").value.trim();
-        let email = document.getElementById("emailAddress").value.trim();
-        let add1 = document.getElementById("address1").value.trim();
-        let city = document.getElementById("city").value.trim();
-        let state = document.getElementById("state").value.trim();
-        let pin = document.getElementById("pincode").value.trim();
+    if (pincode.length !== 6) {
+        alert("Invalid pincode.");
+        return;
+    }
 
-        // Simple validation
-        if (!name || !phone || !email || !add1 || !city || !state || !pin) {
-            alert("Please fill all required fields.");
-            return;
+    // Save delivery info
+    const deliveryData = {
+        fullName,
+        phone,
+        email,
+        address1,
+        address2: document.getElementById("address2").value.trim(),
+        city,
+        state,
+        pincode
+    };
+    localStorage.setItem("deliveryInfo", JSON.stringify(deliveryData));
+
+    // Load cart
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    // Razorpay Options
+    var options = {
+        "key": "rzp_test_RiHoS3p4X706cs",
+        "amount": total * 100,
+        "currency": "INR",
+        "name": "HavenMade",
+        "description": "Order Payment",
+        "image": "images/home/Logo.png",
+
+        "prefill": {
+            "name": fullName,
+            "email": email,
+            "contact": phone
+        },
+
+        "theme": { "color": "#6D9773" },
+
+        "handler": function (response) {
+
+            // Save order data + delivery details
+            const orderData = {
+                payment_id: response.razorpay_payment_id,
+                amount: total,
+                cart: cart,
+                delivery: deliveryData
+            };
+
+            localStorage.setItem("lastOrder", JSON.stringify(orderData));
+
+            localStorage.removeItem("cart");
+
+            // Redirect
+            window.location.href = "thankyou.html";
         }
+    };
 
-        // SAVE delivery details
-        localStorage.setItem("deliveryDetails", JSON.stringify({
-            name, phone, email, add1, city, state, pin
-        }));
-
-        // Read cart & total
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        let total = cart.reduce((sum, item) =>
-            sum + item.price * item.quantity, 0
-        );
-
-        var options = {
-            "key": "rzp_live_RigY3xdQPExOrR", 
-            "amount": total * 100,
-            "currency": "INR",
-            "name": "HavenMade",
-            "description": "Order Payment",
-            "image": "images/home/Logo.png",
-
-            handler: function (response) {
-                localStorage.setItem("lastOrder", JSON.stringify({
-                    payment_id: response.razorpay_payment_id,
-                    amount: total,
-                    cart: cart,
-                    delivery: JSON.parse(localStorage.getItem("deliveryDetails"))
-                }));
-
-                localStorage.removeItem("cart");
-
-                window.location.href = "thankyou.html";
-            },
-        };
-
-        var rzp = new Razorpay(options);
-        rzp.open();
-    });
+    var rzp = new Razorpay(options);
+    rzp.open();
 });
