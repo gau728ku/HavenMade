@@ -1,36 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const paymentBtn = document.getElementById("proceed-payment-btn");
 
-  paymentBtn.addEventListener("click", function () {
-    let name = document.getElementById("full-name").value.trim();
-    let phone = document.getElementById("phone").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let address1 = document.getElementById("address1").value.trim();
-    let address2 = document.getElementById("address2").value.trim();
-    let city = document.getElementById("city").value.trim();
-    let state = document.getElementById("state").value.trim();
-    let pincode = document.getElementById("pincode").value.trim();
+    const payBtn = document.getElementById("proceedToPay");
 
-    // Validate fields
-    if (!name || !phone || !email || !address1 || !city || !state || !pincode) {
-      alert("Please fill all required delivery details.");
-      return;
+    if (!payBtn) {
+        console.error("❌ Button not found: proceedToPay");
+        return;
     }
 
-    // Save Delivery Details
-    let deliveryInfo = {
-      name,
-      phone,
-      email,
-      address1,
-      address2,
-      city,
-      state,
-      pincode
-    };
+    payBtn.addEventListener("click", function () {
 
-    localStorage.setItem("deliveryDetails", JSON.stringify(deliveryInfo));
+        // Collect form values
+        let name = document.getElementById("fullName").value.trim();
+        let phone = document.getElementById("phoneNumber").value.trim();
+        let email = document.getElementById("emailAddress").value.trim();
+        let add1 = document.getElementById("address1").value.trim();
+        let city = document.getElementById("city").value.trim();
+        let state = document.getElementById("state").value.trim();
+        let pin = document.getElementById("pincode").value.trim();
 
+        // Simple validation
+        if (!name || !phone || !email || !add1 || !city || !state || !pin) {
+            alert("Please fill all required fields.");
+            return;
+        }
+
+        // SAVE delivery details
+        localStorage.setItem("deliveryDetails", JSON.stringify({
+            name, phone, email, add1, city, state, pin
+        }));
     // Get Cart + Total
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let total = 1;   // <-- test with ₹1
