@@ -41,8 +41,8 @@ document.getElementById("razorpay-checkout-btn").addEventListener("click", funct
 
     // Load cart
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
+    let total = 1;   // <-- test with ₹1
+    
     // Razorpay Options
     var options = {
         "key": "rzp_live_RigY3xdQPExOrR",
