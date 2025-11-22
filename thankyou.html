@@ -185,35 +185,30 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const data = JSON.parse(localStorage.getItem("checkoutData"));
+  const data = localStorage.getItem("checkoutData");
 
-    if (!data) {
-        console.error("No checkout data found");
-        return;
-    }
+  if (!data) {
+    console.log("No checkout data found");
+    return;
+  }
 
-    // Fill Order Summary
-    document.getElementById("order-id").innerText = data.payment_id;
-    document.getElementById("amount-paid").innerText = "₹" + data.amount;
-    document.getElementById("payment-status").innerText = "Successful";
+  const order = JSON.parse(data);
 
-    // Delivery details
-    document.getElementById("delivery-name").innerText = data.name;
-    document.getElementById("delivery-phone").innerText = data.phone;
-    document.getElementById("delivery-address").innerText =
-        `${data.address1}, ${data.address2 ? data.address2 + ", " : ""}${data.city}, ${data.state} - ${data.pincode}`;
+  // Fill order summary
+  document.getElementById("orderId").innerText = order.orderId;
+  document.getElementById("amountPaid").innerText = "₹" + order.amount;
+  document.getElementById("paymentStatus").innerText = order.paymentStatus;
 
-    // List cart items
-    let itemsHTML = "";
-    data.cart.forEach(item => {
-        itemsHTML += `
-            <div style="margin-bottom:6px;">
-                ${item.name} × ${item.quantity} — ₹${item.price * item.quantity}
-            </div>
-        `;
-    });
+  // Delivery details
+  document.getElementById("custName").innerText = order.deliveryInfo.fullName;
+  document.getElementById("custPhone").innerText = order.deliveryInfo.phone;
+  document.getElementById("custAddress").innerText = order.deliveryInfo.address;
 
-    document.getElementById("order-items").innerHTML = itemsHTML;
+  // Order item
+  if (order.cart.length > 0) {
+    document.getElementById("orderItem").innerText =
+      `${order.cart[0].name} x${order.cart[0].quantity}`;
+  }
 });
 </script>
 
